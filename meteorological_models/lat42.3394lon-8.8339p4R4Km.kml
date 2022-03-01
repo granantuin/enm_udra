@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="105">
+        <Placemark id="107">
+            <name>1.91</name>
+            <Point id="106">
+                <coordinates>-8.824778751347893,42.32357514248175,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="109">
+            <name>2.44</name>
+            <Point id="108">
+                <coordinates>-8.821724225460768,42.35947341895795,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="111">
+            <name>3.57</name>
+            <Point id="110">
+                <coordinates>-8.87333395337103,42.325821840247414,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="113">
+            <name>3.88</name>
+            <Point id="112">
+                <coordinates>-8.870307396484321,42.36172143204525,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="115">
+            <name>STATION</name>
+            <Point id="114">
+                <coordinates>-8.8339,42.3394,0.0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>
