@@ -10,9 +10,6 @@ from st_aggrid import AgGrid
 st.set_page_config(page_title="ENM Platforma tres",layout="wide")
 
 st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF Meteogalicia**") 
-st.write("###### **Dirección viento medio hora anterior [T-1hora, T)**")
-st.write("###### **Racha máxima hora anterior [T-1hora, T)**")
-st.write("###### **Probabilidad de precipitación hora anterior**")
 
 #load algorithm file gust
 algo_g_d0=pickle.load(open("algorithms/gust_udr_d0.al","rb"))
@@ -54,6 +51,8 @@ df_show=pd.DataFrame({"Hora UTC":meteo_model[:24].index,
                       })
                      
 st.title(""" Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning""")
+st.write("###### **Dirección viento medio hora anterior [T-1hora, T)**")
+st.write("###### **Racha máxima hora anterior [T-1hora, T)**")
 AgGrid(df_show)
 
 # link to actual Udra station data
@@ -100,6 +99,7 @@ df_show_pre["Modelo WRF en punto más cercano"]=np.around(meteo_model[:48].prec0
 df_show_pre=df_show_pre.drop(columns=["no p"])
 df_show_pre['probabilidad de precipitación machine learning'] = df_show_pre['probabilidad de precipitación machine learning'].map("{:.0%}".format)
 st.title(""" Probabilidad de precipitación ENM con Modelo WRF y Machine Learning""")
+st.write("###### **Probabilidad de precipitación hora anterior**")
 AgGrid(df_show_pre)
 
 st.write("Estación Marin [link](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=14005&dataSeleccionada="+today_s)
