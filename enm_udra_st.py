@@ -10,6 +10,9 @@ from st_aggrid import AgGrid
 st.set_page_config(page_title="ENM Platforma tres",layout="wide")
 
 st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF Meteogalicia**") 
+st.write("###### **Dirección viento medio hora anterior [T-1hora, T)**")
+st.write("###### **Racha máxima hora anterior [T-1hora, T)**")
+st.write("###### **Probabilidad de precipitación hora anterior**")
 
 #load algorithm file gust
 algo_g_d0=pickle.load(open("algorithms/gust_udr_d0.al","rb"))
