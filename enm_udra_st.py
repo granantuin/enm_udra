@@ -69,8 +69,8 @@ st.download_button(label="Descargar informe de calidad viento",
 
 #Precipitation
 #load algorithm file precipitation marin d0 d1
-algo_prec_d0=pickle.load(open("algorithms/prec_mar_d0.al","rb"))
-algo_prec_d1=pickle.load(open("algorithms/prec_mar_d1.al","rb"))
+algo_prec_d0=pickle.load(open("algorithms/prec_ENM_d0.al","rb"))
+algo_prec_d1=pickle.load(open("algorithms/prec_ENM_d1.al","rb"))
 
 #load raw meteorological model and get model variables
 meteo_model=get_meteogalicia_model(algo_prec_d1["coor"])
@@ -88,8 +88,8 @@ model_x_var_p0=meteo_model[:24][algo_prec_d0["x_var"]]
 model_x_var_p1=meteo_model[24:48][algo_prec_d1["x_var"]]
 
 #forecast machine learning precipitation
-prec_ml0=algo_prec_d0["ml_model"].predict_proba(model_x_var_p0)
-prec_ml1=algo_prec_d1["ml_model"].predict_proba(model_x_var_p1)
+prec_ml0=algo_prec_d0["pipe"].predict_proba(model_x_var_p0)
+prec_ml1=algo_prec_d1["pipe"].predict_proba(model_x_var_p1)
 
 #show results
 df_show_pre=pd.DataFrame(np.concatenate((prec_ml0,prec_ml1),axis=0),
