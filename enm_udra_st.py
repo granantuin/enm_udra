@@ -34,13 +34,13 @@ model_x_var_g=meteo_model[:24][algo_g_d0["x_var"]]
 gust_ml=(algo_g_d0["ml_model"].predict(model_x_var_g)*1.94384).round(1)
 
 #load algorithm file dir
-algo_dir_d0=pickle.load(open("algorithms/dir_udr_d0.al","rb"))
+algo_dir_d0=pickle.load(open("algorithms/dir_UDR_d0.al","rb"))
 
 #select x _var
 model_x_var_d=meteo_model[:24][algo_dir_d0["x_var"]]
 
 #forecast machine learning wind direction degrees
-dir_ml=algo_dir_d0["ml_model"].predict(model_x_var_d)
+dir_ml=algo_dir_d0["pipe"].predict(model_x_var_d)
 
 #compare results
 df_show=pd.DataFrame({"Hora UTC":meteo_model[:24].index,
