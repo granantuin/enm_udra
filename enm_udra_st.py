@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from meteogaliciamodel import get_meteogalicia_model
+from meteogaliciamodel import get_meteogalicia_model_4Km,get_meteogalicia_model_1Km
 import pickle
 import streamlit as st
 import plotly.express as px
@@ -12,10 +12,10 @@ st.set_page_config(page_title="ENM Platforma tres",layout="wide")
 st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF Meteogalicia**") 
 
 #load algorithm file gust
-algo_g_d0=pickle.load(open("algorithms/gust_udr_d0.al","rb"))
+algo_g_d0 = pickle.load(open("algorithms/gust_udr_d0.al","rb"))
 
 #load raw meteorological model and get model variables
-meteo_model=get_meteogalicia_model(algo_g_d0["coor"])
+meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 
 #map
 px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
@@ -73,7 +73,7 @@ algo_prec_d0=pickle.load(open("algorithms/prec_ENM_d0.al","rb"))
 algo_prec_d1=pickle.load(open("algorithms/prec_ENM_d1.al","rb"))
 
 #load raw meteorological model and get model variables
-meteo_model=get_meteogalicia_model(algo_prec_d1["coor"])
+meteo_model=get_meteogalicia_model_4Km(algo_prec_d1["coor"])
 
 #map
 st.write("#### **Mapa situación ENM y puntos modelo WRF Meteogalicia**")
