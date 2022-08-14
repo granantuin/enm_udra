@@ -13,7 +13,7 @@ st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos mod
 
 #load algorithm file gust
 algo_g_d0 = pickle.load(open("algorithms/gust_UDR_d0.al","rb"))
-algo_g_d1 = pickle.load(open("algorithms/gust_UDR_d0.al","rb"))
+algo_g_d1 = pickle.load(open("algorithms/gust_UDR_d1.al","rb"))
 
 #load raw meteorological model and get model variables
 meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
