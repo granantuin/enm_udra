@@ -9,7 +9,7 @@ from st_aggrid import AgGrid
 
 st.set_page_config(page_title="ENM Platforma tres",layout="wide")
 
-st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF Meteogalicia**") 
+st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF (1 Km) Meteogalicia**") 
 
 #load algorithm file gust
 algo_g_d0 = pickle.load(open("algorithms/gust_UDR_d0.al","rb"))
@@ -57,8 +57,8 @@ df_show=pd.DataFrame({"Hora UTC":meteo_model[:48].index,
                       })
                      
 st.title(""" Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning""")
-st.write("###### **Dirección viento medio hora anterior [T-1hora, T)**")
-st.write("###### **Racha máxima hora anterior [T-1hora, T)**")
+st.write("###### **Dirección viento medio hora anterior (T-1hora, T]**")
+st.write("###### **Racha máxima hora anterior (T-1hora, T]**")
 AgGrid(df_show)
 
 # link to actual Udra station data
