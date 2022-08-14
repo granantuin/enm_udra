@@ -49,10 +49,10 @@ dir_ml_d0 = algo_dir_d0["pipe"].predict(model_x_var_dir_d0)
 dir_ml_d1 = algo_dir_d1["pipe"].predict(model_x_var_dir_d1)
 
 #compare results
-df_show=pd.DataFrame({"Hora UTC":meteo_model[:24].index,
-                      "Machine Learning dirección grados":dir_ml,
-                      "Modelo WRF en punto más cercano dirección grados":dir0,
-                      "Machine Learning racha máxima nudos":gust_ml,
+df_show=pd.DataFrame({"Hora UTC":meteo_model[:48].index,
+                      "Machine Learning dirección grados": np.concatenate((dir_ml_d0,dir_ml_d1),axis=0),
+                      "Modelo WRF en punto más cercano dirección grados": dir0,
+                      "Machine Learning racha máxima nudos": np.concatenate((gust_ml_d0,gust_ml_d1),axis=0),
                       "Modelo WRF en punto más cercano racha máxima nudos":w_g0,
                       })
                      
