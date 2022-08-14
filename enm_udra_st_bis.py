@@ -82,7 +82,7 @@ algo_prec_d1=pickle.load(open("algorithms/prec_ENM_d1.al","rb"))
 meteo_model=get_meteogalicia_model_4Km(algo_prec_d1["coor"])
 
 #map
-st.write("#### **Mapa situación ENM y puntos modelo WRF Meteogalicia**")
+st.write("#### **Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia**")
 px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
 dist_map=px.scatter_mapbox(algo_prec_d1["coor"], hover_data=['distance'],
                            lat='lat', lon='lon',color='distance',
@@ -104,7 +104,7 @@ df_show_pre["Hora UTC"]=meteo_model.index[0:48]
 df_show_pre["Modelo WRF en punto más cercano"]=np.around(meteo_model[:48].prec0.values,decimals=1)
 df_show_pre=df_show_pre.drop(columns=["no p"])
 df_show_pre['probabilidad de precipitación machine learning'] = df_show_pre['probabilidad de precipitación machine learning'].map("{:.0%}".format)
-st.title(""" Probabilidad de precipitación ENM con Modelo WRF (4 Km) y Machine Learning""")
+st.title(""" Probabilidad de precipitación ENM con Modelo WRF y Machine Learning""")
 st.write("###### **Probabilidad de precipitación hora anterior**")
 AgGrid(df_show_pre)
 
