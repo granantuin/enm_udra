@@ -104,7 +104,7 @@ df_show_pre["Hora UTC"]=meteo_model.index[0:48]
 df_show_pre["Modelo WRF en punto más cercano"]=np.around(meteo_model[:48].prec0.values,decimals=1)
 df_show_pre=df_show_pre.drop(columns=["no p"])
 df_show_pre['probabilidad de precipitación machine learning'] = df_show_pre['probabilidad de precipitación machine learning'].map("{:.0%}".format)
-st.title(""" Probabilidad de precipitación ENM con Modelo WRF y Machine Learning""")
+st.title(""" Probabilidad de precipitación ENM con Modelo WRF (4 Km) y Machine Learning""")
 st.write("###### **Probabilidad de precipitación hora anterior**")
 AgGrid(df_show_pre)
 
