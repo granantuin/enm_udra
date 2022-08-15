@@ -101,7 +101,7 @@ prec_ml1=algo_prec_d1["pipe"].predict_proba(model_x_var_p1)
 df_show_pre=pd.DataFrame(np.concatenate((prec_ml0,prec_ml1),axis=0),
                          columns=["no p","Machine learning"])
 df_show_pre["Hora UTC"]=meteo_model.index[0:48]
-df_show_pre["Modelo WRF en punto más cercano"]=np.around(meteo_model[:48].prec0.values,decimals=1)
+df_show_pre["Modelo WRF"]=np.around(meteo_model[:48].prec0.values,decimals=1)
 df_show_pre=df_show_pre.drop(columns=["no p"])
 df_show_pre['Machine learning'] = df_show_pre['Machine learning'].map("{:.0%}".format)
 st.title(""" Probabilidad de precipitación ENM con Modelo WRF y Machine Learning""")
