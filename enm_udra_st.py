@@ -18,11 +18,12 @@ algo_g_d1 = pickle.load(open("algorithms/gust_UDR_d1.al","rb"))
 #load raw meteorological model and get model variables
 meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 
-#map
-px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
-dist_map=px.scatter_mapbox(algo_g_d0["coor"], hover_data=['distance'],lat='lat', lon='lon',color='distance',
-                           color_continuous_scale=px.colors.cyclical.IceFire,)
-st.plotly_chart(dist_map)
+if st.checkbox("¿Dibujar mapa con los puntos del modelo?"):
+  #map
+  px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
+  dist_map=px.scatter_mapbox(algo_g_d0["coor"], hover_data=['distance'],lat='lat', lon='lon',color='distance',
+                             color_continuous_scale=px.colors.cyclical.IceFire,)
+  st.plotly_chart(dist_map)
 
 #Select meteorological model wind features
 w_g0=(meteo_model[0:48].wind_gust0*1.94384).round(0).to_numpy()
