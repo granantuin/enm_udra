@@ -58,7 +58,7 @@ df_show=pd.DataFrame({"Machine Learning dirección": np.concatenate((dir_ml_d0,d
                      
 st.title(""" Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning""")
 st.write("###### **Dirección viento medio hora anterior (grados)**")
-st.write("###### **Racha máxima hora anterior nudos**")
+st.write("###### **Racha máxima hora anterior (nudos)**")
 AgGrid(df_show)
 
 # link to actual Udra station data
@@ -103,7 +103,7 @@ df_show_pre=pd.DataFrame(np.concatenate((prec_ml0,prec_ml1),axis=0),
 df_show_pre["Hora UTC"]=meteo_model.index[0:48]
 df_show_pre["Modelo WRF en punto más cercano"]=np.around(meteo_model[:48].prec0.values,decimals=1)
 df_show_pre=df_show_pre.drop(columns=["no p"])
-df_show_pre['probabilidad de precipitación machine learning'] = df_show_pre['probabilidad de precipitación machine learning'].map("{:.0%}".format)
+df_show_pre['Machine learning'] = df_show_pre['probabilidad de precipitación machine learning'].map("{:.0%}".format)
 st.title(""" Probabilidad de precipitación ENM con Modelo WRF y Machine Learning""")
 st.write("###### **Probabilidad de precipitación hora anterior**")
 AgGrid(df_show_pre)
