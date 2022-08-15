@@ -9,7 +9,7 @@ from st_aggrid import AgGrid
 
 st.set_page_config(page_title="ENM Platforma tres",layout="wide")
 
-st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF (1 Km) Meteogalicia**") 
+ 
 
 #load algorithm file gust
 algo_g_d0 = pickle.load(open("algorithms/gust_UDR_d0.al","rb"))
@@ -19,7 +19,8 @@ algo_g_d1 = pickle.load(open("algorithms/gust_UDR_d1.al","rb"))
 meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 
 #map
-if st.checkbox("¿Dibujar mapa con los puntos del modelo?"):
+st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF (1 Km) Meteogalicia**")
+if st.checkbox("¿Dibujar mapa con los puntos del modelo 1Km?"):
   px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
   dist_map=px.scatter_mapbox(algo_g_d0["coor"], hover_data=['distance'],lat='lat', lon='lon',color='distance',
                              color_continuous_scale=px.colors.cyclical.IceFire,)
@@ -84,7 +85,7 @@ meteo_model=get_meteogalicia_model_4Km(algo_prec_d1["coor"])
 
 #map
 st.write("#### **Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia**")
-if st.checkbox("¿Dibujar mapa con los puntos del modelo?"):
+if st.checkbox("¿Dibujar mapa con los puntos del modelo 4 Km?"):
   px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
   dist_map=px.scatter_mapbox(algo_prec_d1["coor"], hover_data=['distance'],
                              lat='lat', lon='lon',color='distance',
