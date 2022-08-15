@@ -18,8 +18,8 @@ algo_g_d1 = pickle.load(open("algorithms/gust_UDR_d1.al","rb"))
 #load raw meteorological model and get model variables
 meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 
+#map
 if st.checkbox("¿Dibujar mapa con los puntos del modelo?"):
-  #map
   px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
   dist_map=px.scatter_mapbox(algo_g_d0["coor"], hover_data=['distance'],lat='lat', lon='lon',color='distance',
                              color_continuous_scale=px.colors.cyclical.IceFire,)
@@ -84,11 +84,12 @@ meteo_model=get_meteogalicia_model_4Km(algo_prec_d1["coor"])
 
 #map
 st.write("#### **Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia**")
-px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
-dist_map=px.scatter_mapbox(algo_prec_d1["coor"], hover_data=['distance'],
-                           lat='lat', lon='lon',color='distance',
-                           color_continuous_scale=px.colors.cyclical.IceFire,)
-st.plotly_chart(dist_map)
+if st.checkbox("¿Dibujar mapa con los puntos del modelo?"):
+  px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
+  dist_map=px.scatter_mapbox(algo_prec_d1["coor"], hover_data=['distance'],
+                             lat='lat', lon='lon',color='distance',
+                             color_continuous_scale=px.colors.cyclical.IceFire,)
+  st.plotly_chart(dist_map)
 
 #select x _var
 model_x_var_p0=meteo_model[:24][algo_prec_d0["x_var"]]
