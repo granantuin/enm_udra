@@ -25,7 +25,7 @@ dist_map=px.scatter_mapbox(algo_g_d0["coor"], hover_data=['distance'],lat='lat',
 st.plotly_chart(dist_map)
 
 #Select meteorological model wind features
-w_g0=(meteo_model[0:48].wind_gust0*1.94384).round(1).to_numpy()
+w_g0=(meteo_model[0:48].wind_gust0*1.94384).round(0).to_numpy()
 dir0=(meteo_model[0:48].dir0).round(0).to_numpy()
 
 #select x _var
@@ -33,8 +33,8 @@ model_x_var_g_d0 = meteo_model[:24][algo_g_d0["x_var"]]
 model_x_var_g_d1 = meteo_model[24:48][algo_g_d1["x_var"]]
 
 #forecast machine learning  gust knots
-gust_ml_d0 = (algo_g_d0["pipe"].predict(model_x_var_g_d0)*1.94384).round(1)
-gust_ml_d1 = (algo_g_d1["pipe"].predict(model_x_var_g_d1)*1.94384).round(1)
+gust_ml_d0 = (algo_g_d0["pipe"].predict(model_x_var_g_d0)*1.94384).round(0)
+gust_ml_d1 = (algo_g_d1["pipe"].predict(model_x_var_g_d1)*1.94384).round(0)
 
 #load algorithm file dir
 algo_dir_d0 = pickle.load(open("algorithms/dir_UDR_d0.al","rb"))
@@ -51,9 +51,9 @@ dir_ml_d1 = algo_dir_d1["pipe"].predict(model_x_var_dir_d1)
 #compare results
 df_show=pd.DataFrame({"Hora UTC":meteo_model[:48].index,
                       "Machine Learning dirección grados": np.concatenate((dir_ml_d0,dir_ml_d1),axis=0),
-                      "Modelo WRF en punto más cercano dirección grados": dir0,
+                      "Modelo WRF dirección grados": dir0,
                       "Machine Learning racha máxima nudos": np.concatenate((gust_ml_d0,gust_ml_d1),axis=0),
-                      "Modelo WRF en punto más cercano racha máxima nudos":w_g0,
+                      "Modelo WRF racha máxima nudos":w_g0,
                       })
                      
 st.title(""" Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning""")
