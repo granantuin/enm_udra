@@ -49,16 +49,16 @@ dir_ml_d0 = algo_dir_d0["pipe"].predict(model_x_var_dir_d0)
 dir_ml_d1 = algo_dir_d1["pipe"].predict(model_x_var_dir_d1)
 
 #compare results
-df_show=pd.DataFrame({"Hora UTC":meteo_model[:48].index,
-                      "Machine Learning dirección grados": np.concatenate((dir_ml_d0,dir_ml_d1),axis=0),
-                      "Modelo WRF dirección grados": dir0,
-                      "Machine Learning racha máxima nudos": np.concatenate((gust_ml_d0,gust_ml_d1),axis=0),
-                      "Modelo WRF racha máxima nudos":w_g0,
+df_show=pd.DataFrame({"Machine Learning dirección": np.concatenate((dir_ml_d0,dir_ml_d1),axis=0),
+                      "Modelo WRF dirección": dir0,
+                      "Hora UTC":meteo_model[:48].index,
+                      "Machine Learning racha máxima": np.concatenate((gust_ml_d0,gust_ml_d1),axis=0),
+                      "Modelo WRF racha máxima":w_g0,
                       })
                      
 st.title(""" Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning""")
-st.write("###### **Dirección viento medio hora anterior (T-1hora, T]**")
-st.write("###### **Racha máxima hora anterior (T-1hora, T]**")
+st.write("###### **Dirección viento medio hora anterior (grados)**")
+st.write("###### **Racha máxima hora anterior nudos**")
 AgGrid(df_show)
 
 # link to actual Udra station data
