@@ -111,7 +111,7 @@ df_show_pre['Machine learning'] = df_show_pre['Machine learning'].map("{:.0%}".f
 st.title(""" Probabilidad de precipitación ENM con Modelo WRF y Machine Learning""")
 st.write("###### **Probabilidad de precipitación hora anterior**")
 AgGrid(df_show_pre)
-st.markdown(get_table_download_link(df_show_prec),unsafe_allow_html=True)            
+st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)            
 
 st.write("Estación Marin [link](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=14005&dataSeleccionada="+today_s)
 
