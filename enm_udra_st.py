@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from meteogaliciamodel import get_meteogalicia_model_4Km,get_meteogalicia_model_1Km
+from help_functions import get_meteogalicia_model_4Km, get_meteogalicia_model_1Km, get_table_download_link
 import pickle
 import streamlit as st
 import plotly.express as px
@@ -62,6 +62,7 @@ st.title(""" Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalici
 st.write("###### **Dirección viento medio hora anterior (grados)**")
 st.write("###### **Racha máxima hora anterior (nudos)**")
 AgGrid(df_show)
+st.markdown(get_table_download_link(df_show),unsafe_allow_html=True)
 
 # link to actual Udra station data
 today_s=pd.to_datetime("today").strftime("%d/%m/%Y)")
@@ -110,6 +111,7 @@ df_show_pre['Machine learning'] = df_show_pre['Machine learning'].map("{:.0%}".f
 st.title(""" Probabilidad de precipitación ENM con Modelo WRF y Machine Learning""")
 st.write("###### **Probabilidad de precipitación hora anterior**")
 AgGrid(df_show_pre)
+st.markdown(get_table_download_link(df_show_prec),unsafe_allow_html=True)            
 
 st.write("Estación Marin [link](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=14005&dataSeleccionada="+today_s)
 
