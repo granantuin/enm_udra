@@ -57,7 +57,7 @@ dir_ml_d2 = algo_dir_d2["pipe"].predict(model_x_var_dir_d2)
 #compare results
 df_show=pd.DataFrame({"Machine Learning dirección": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
                       "Modelo WRF dirección": dir0,
-                      "Hora UTC":meteo_model[:48].index,
+                      "Hora UTC":meteo_model[:72].index,
                       "Machine Learning racha máxima": np.concatenate((gust_ml_d0,gust_ml_d1,dir_ml_d2),axis=0),
                       "Modelo WRF racha máxima":w_g0,
                       })
