@@ -55,10 +55,10 @@ dir_ml_d1 = algo_dir_d1["pipe"].predict(model_x_var_dir_d1)
 dir_ml_d2 = algo_dir_d2["pipe"].predict(model_x_var_dir_d2)
 
 #compare results
-df_show=pd.DataFrame({"Machine Learning dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
+df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
                       "Modelo WRF dir": dir0,
                       "Hora UTC":meteo_model[:72].index,
-                      "Machine Learning racha": np.concatenate((gust_ml_d0,gust_ml_d1,gust_ml_d2),axis=0),
+                      "ML racha": np.concatenate((gust_ml_d0,gust_ml_d1,gust_ml_d2),axis=0),
                       "Modelo WRF racha":w_g0,
                       })
                      
