@@ -19,7 +19,7 @@ meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 
 #map
 #st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF (1 Km) Meteogalicia**")
-if st.checkbox("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF (1 Km) Meteogalicia**"):
+if st.checkbox("**Mapa situación estación meteorológica cabo Udra y puntos modelo WRF (1 Km) Meteogalicia**"):
   px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
   dist_map=px.scatter_mapbox(algo_g_d0["coor"], hover_data=['distance'],lat='lat', lon='lon',color='distance',
                              color_continuous_scale=px.colors.cyclical.IceFire,)
