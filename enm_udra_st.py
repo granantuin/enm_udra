@@ -56,10 +56,10 @@ dir_ml_d2 = algo_dir_d2["pipe"].predict(model_x_var_dir_d2)
 
 #compare results
 df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
-                      "Modelo WRF dir": dir0,
+                      "WRF dir": dir0,
                       "Hora UTC":meteo_model[:72].index,
                       "ML racha": np.concatenate((gust_ml_d0,gust_ml_d1,gust_ml_d2),axis=0),
-                      "Modelo WRF racha":w_g0,
+                      "WRF racha":w_g0,
                       })
                      
 st.title(""" Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning""")
@@ -112,7 +112,7 @@ prec_ml2=algo_prec_d2["pipe"].predict_proba(model_x_var_p2)
 df_show_pre=pd.DataFrame(np.concatenate((prec_ml0,prec_ml1,prec_ml2),axis=0),
                          columns=["no p","Machine learning"])
 df_show_pre["Hora UTC"]=meteo_model.index[0:72]
-df_show_pre["Modelo WRF"]=np.around(meteo_model[:72].prec0.values,decimals=1)
+df_show_pre["WRF"]=np.around(meteo_model[:72].prec0.values,decimals=1)
 df_show_pre=df_show_pre.drop(columns=["no p"])
 df_show_pre['Machine learning'] = df_show_pre['Machine learning'].map("{:.0%}".format)
 st.title(""" Probabilidad de precipitación ENM con Modelo WRF y Machine Learning""")
