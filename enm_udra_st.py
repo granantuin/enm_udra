@@ -71,7 +71,7 @@ if st.checkbox("Mapa situación estación meteorológica cabo Udra y puntos mode
 
 #link to actual Udra station data
 today_s=pd.to_datetime("today").strftime("%d/%m/%Y)")
-st.write("Estación Udra [link](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=10905&dataSeleccionada="+today_s)
+st.write("Estación Udra [enlace](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=10905&dataSeleccionada="+today_s)
 
 #download quality report
 with open("reports/Informe_wind.pdf", "rb") as pdf_file:
@@ -124,7 +124,7 @@ if st.checkbox("Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia"):
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)            
 
 #link to actual  Marin station data
-st.write("Estación Marin [link](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=14005&dataSeleccionada="+today_s)
+st.write("Estación Marin [enlace](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=14005&dataSeleccionada="+today_s)
 
 #download quality report
 with open("reports/informe_prec.pdf", "rb") as pdf_file:
