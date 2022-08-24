@@ -17,14 +17,6 @@ algo_g_d2 = pickle.load(open("algorithms/gust_UDR_d2.al","rb"))
 #load raw meteorological model and get model variables
 meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 
-#map
-#st.write("#### **Mapa situación estación meteorológica cabo Udra y puntos modelo WRF (1 Km) Meteogalicia**")
-if st.checkbox("**Mapa situación estación meteorológica cabo Udra y puntos modelo WRF (1 Km) Meteogalicia**"):
-  px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
-  dist_map=px.scatter_mapbox(algo_g_d0["coor"], hover_data=['distance'],lat='lat', lon='lon',color='distance',
-                             color_continuous_scale=px.colors.cyclical.IceFire,)
-  st.plotly_chart(dist_map)
-
 #Select meteorological model wind features
 w_g0=(meteo_model[0:72].wind_gust0*1.94384).round(0).to_numpy()
 dir0=(meteo_model[0:72].dir0).round(0).to_numpy()
@@ -66,9 +58,18 @@ st.title(""" Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalici
 st.write("###### **Dirección viento medio hora anterior (grados)**")
 st.write("###### **Racha máxima hora anterior (nudos)**")
 AgGrid(df_show)
+
+#Download excel file
 st.markdown(get_table_download_link(df_show),unsafe_allow_html=True)
 
-# link to actual Udra station data
+#map
+if st.checkbox("Mapa situación estación meteorológica cabo Udra y puntos modelo WRF (1 Km) Meteogalicia"):
+  px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
+  dist_map=px.scatter_mapbox(algo_g_d0["coor"], hover_data=['distance'],lat='lat', lon='lon',color='distance',
+                             color_continuous_scale=px.colors.cyclical.IceFire,)
+  st.plotly_chart(dist_map)
+
+#link to actual Udra station data
 today_s=pd.to_datetime("today").strftime("%d/%m/%Y)")
 st.write("Estación Udra [link](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=10905&dataSeleccionada="+today_s)
 
@@ -80,6 +81,8 @@ st.download_button(label="Descargar informe de calidad viento",
                     file_name="informe_wind.pdf",
                     mime='application/octet-stream')
 
+
+
 #Precipitation
 #load algorithm file precipitation marin d0 d1
 algo_prec_d0=pickle.load(open("algorithms/prec_ENM_d0.al","rb"))
@@ -88,15 +91,6 @@ algo_prec_d2=pickle.load(open("algorithms/prec_ENM_d2.al","rb"))
 
 #load raw meteorological model and get model variables
 meteo_model=get_meteogalicia_model_4Km(algo_prec_d1["coor"])
-
-#map
-st.write("#### **Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia**")
-if st.checkbox("¿Dibujar mapa con los puntos del modelo 4 Km?"):
-  px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
-  dist_map=px.scatter_mapbox(algo_prec_d1["coor"], hover_data=['distance'],
-                             lat='lat', lon='lon',color='distance',
-                             color_continuous_scale=px.colors.cyclical.IceFire,)
-  st.plotly_chart(dist_map)
 
 #select x _var
 model_x_var_p0=meteo_model[:24][algo_prec_d0["x_var"]]
@@ -117,8 +111,19 @@ df_show_pre=df_show_pre.drop(columns=["no p"])
 df_show_pre['ML'] = df_show_pre['ML'].map("{:.0%}".format)
 st.title(""" Probabilidad de precipitación hora anterior con Machine Learning y precipitación prevista en mm por WRF""")
 AgGrid(df_show_pre)
+
+#map
+if st.checkbox("Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia"):
+  px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
+  dist_map=px.scatter_mapbox(algo_prec_d1["coor"], hover_data=['distance'],
+                             lat='lat', lon='lon',color='distance',
+                             color_continuous_scale=px.colors.cyclical.IceFire,)
+  st.plotly_chart(dist_map)
+  
+#download  excel file  
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)            
 
+#link to actual  Marin station data
 st.write("Estación Marin [link](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=14005&dataSeleccionada="+today_s)
 
 #download quality report
