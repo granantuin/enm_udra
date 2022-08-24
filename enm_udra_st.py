@@ -112,6 +112,9 @@ df_show_pre['ML'] = df_show_pre['ML'].map("{:.0%}".format)
 st.title(""" Probabilidad de precipitación hora anterior con Machine Learning y precipitación prevista en mm por WRF""")
 AgGrid(df_show_pre)
 
+#download  excel file  
+st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
+
 #map
 if st.checkbox("Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia"):
   px.set_mapbox_access_token("pk.eyJ1IjoiZ3JhbmFudHVpbiIsImEiOiJja3B4dGU4OTkwMTFmMm9ycnNhMjJvaGJqIn0.VWzx_PkD9A5cSUVsn_ijCA")
@@ -120,9 +123,7 @@ if st.checkbox("Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia"):
                              color_continuous_scale=px.colors.cyclical.IceFire,)
   st.plotly_chart(dist_map)
   
-#download  excel file  
-st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)            
-
+     
 #link to actual  Marin station data
 st.write("Estación Marin [enlace](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=14005&dataSeleccionada="+today_s)
 
