@@ -115,8 +115,7 @@ df_show_pre["Hora UTC"]=meteo_model.index[0:72]
 df_show_pre["WRF"]=np.around(meteo_model[:72].prec0.values,decimals=1)
 df_show_pre=df_show_pre.drop(columns=["no p"])
 df_show_pre['ML'] = df_show_pre['ML'].map("{:.0%}".format)
-st.title(""" Probabilidad de precipitación hora anterior Machine Learning y precipitación prevista en mm por WRF""")
-st.write("###### **Probabilidad de precipitación hora anterior**")
+st.title(""" Probabilidad de precipitación hora anterior con Machine Learning y precipitación prevista en mm por WRF""")
 AgGrid(df_show_pre)
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)            
 
