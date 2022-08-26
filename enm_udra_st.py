@@ -86,29 +86,32 @@ st.download_button(label="Descargar informe de calidad viento",
 
 #Precipitation
 #load algorithm file precipitation marin d0 d1
-algo_prec_d0=pickle.load(open("algorithms/prec_ENM_d0.al","rb"))
-algo_prec_d1=pickle.load(open("algorithms/prec_ENM_d1.al","rb"))
-algo_prec_d2=pickle.load(open("algorithms/prec_ENM_d2.al","rb"))
+algo_prec_d0 = pickle.load(open("algorithms/prec_ENM_d0.al","rb"))
+algo_prec_d1 = pickle.load(open("algorithms/prec_ENM_d1.al","rb"))
+algo_prec_d2 = pickle.load(open("algorithms/prec_ENM_d2.al","rb"))
+algo_prec_d3 = pickle.load(open("algorithms/prec_ENM_d3.al","rb"))
 
 #load raw meteorological model and get model variables
-meteo_model=get_meteogalicia_model_4Km(algo_prec_d1["coor"])
+meteo_model = get_meteogalicia_model_4Km(algo_prec_d1["coor"])
 
 #select x _var
-model_x_var_p0=meteo_model[:24][algo_prec_d0["x_var"]]
-model_x_var_p1=meteo_model[24:48][algo_prec_d1["x_var"]]
-model_x_var_p2=meteo_model[48:72][algo_prec_d2["x_var"]]
+model_x_var_p0 = meteo_model[:24][algo_prec_d0["x_var"]]
+model_x_var_p1 = meteo_model[24:48][algo_prec_d1["x_var"]]
+model_x_var_p2 = meteo_model[48:72][algo_prec_d2["x_var"]]
+model_x_var_p3 = meteo_model[72:96][algo_prec_d2["x_var"]]
 
 #forecast machine learning precipitation
-prec_ml0=algo_prec_d0["pipe"].predict_proba(model_x_var_p0)
-prec_ml1=algo_prec_d1["pipe"].predict_proba(model_x_var_p1)
-prec_ml2=algo_prec_d2["pipe"].predict_proba(model_x_var_p2)
+prec_ml0 = algo_prec_d0["pipe"].predict_proba(model_x_var_p0)
+prec_ml1 = algo_prec_d1["pipe"].predict_proba(model_x_var_p1)
+prec_ml2 = algo_prec_d2["pipe"].predict_proba(model_x_var_p2)
+prec_ml3 = algo_prec_d3["pipe"].predict_proba(model_x_var_p3)
 
 #show results
-df_show_pre=pd.DataFrame(np.concatenate((prec_ml0,prec_ml1,prec_ml2),axis=0),
+df_show_pre = pd.DataFrame(np.concatenate((prec_ml0,prec_ml1,prec_ml2,prec_ml3),axis=0),
                          columns=["no p","ML"])
-df_show_pre["Hora UTC"]=meteo_model.index[0:72]
-df_show_pre["WRF"]=np.around(meteo_model[:72].prec0.values,decimals=1)
-df_show_pre=df_show_pre.drop(columns=["no p"])
+df_show_pre["Hora UTC"] = meteo_model.index[0:96]
+df_show_pre["WRF"] = np.around(meteo_model[:96].prec0.values,decimals=1)
+df_show_pre = df_show_pre.drop(columns=["no p"])
 df_show_pre['ML'] = df_show_pre['ML'].map("{:.0%}".format)
 st.title(""" Probabilidad de precipitación hora anterior con Machine Learning y precipitación prevista en mm por WRF""")
 AgGrid(df_show_pre)
