@@ -40,7 +40,7 @@ def get_meteogalicia_model_4Km(coorde):
     for col in zip(dffinal.columns,new_col):
         dffinal=dffinal.rename(columns = {col[0]:col[1]})
  
-    dffinal=dffinal.set_index(pd.date_range(start=today.strftime("%Y-%m-%d"), end=(today+timedelta(days=3)).strftime("%Y-%m-%d"), freq="H")[1:-1])  
+    dffinal=dffinal.set_index(pd.date_range(start=today.strftime("%Y-%m-%d"), end=(today+timedelta(days=4)).strftime("%Y-%m-%d"), freq="H")[1:-1])  
            
          
     return dffinal 
