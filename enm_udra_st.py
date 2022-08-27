@@ -53,8 +53,8 @@ df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),a
                       "ML racha": np.concatenate((gust_ml_d0,gust_ml_d1,gust_ml_d2),axis=0),
                       "WRF racha":w_g0,
                       })
-                     
-#st.title(""" Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning""")
+              
+
 st.write("#### **Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning**")
 st.write("###### **Dirección viento medio hora anterior (grados)**")
 st.write("###### **Racha máxima hora anterior (nudos)**")
@@ -116,7 +116,6 @@ df_show_pre = df_show_pre.drop(columns=["no p"])
 df_show_pre['ML'] = df_show_pre['ML'].map("{:.0%}".format)
 
 st.write("#### **Probabilidad de precipitación hora anterior con Machine Learning y precipitación prevista en mm por WRF**")         
-#st.title(""" Probabilidad de precipitación hora anterior con Machine Learning y precipitación prevista en mm por WRF""")
 AgGrid(df_show_pre)
 
 #download  excel file  
