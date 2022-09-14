@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="81">
+        <Placemark id="83">
+            <name>0.509</name>
+            <Point id="82">
+                <coordinates>-8.830873489379883,42.33539962768555,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="85">
+            <name>0.945</name>
+            <Point id="84">
+                <coordinates>-8.829856872558594,42.34736251831055,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="87">
+            <name>1.139</name>
+            <Point id="86">
+                <coordinates>-8.847057342529297,42.336151123046875,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="89">
+            <name>1.39</name>
+            <Point id="88">
+                <coordinates>-8.846043586730957,42.348114013671875,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="91">
+            <name>1.664</name>
+            <Point id="90">
+                <coordinates>-8.814689636230469,42.33464813232422,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="93">
+            <name>1.782</name>
+            <Point id="92">
+                <coordinates>-8.831889152526855,42.32343673706055,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="95">
+            <name>1.845</name>
+            <Point id="94">
+                <coordinates>-8.81367015838623,42.34661102294922,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="97">
+            <name>2.052</name>
+            <Point id="96">
+                <coordinates>-8.84807014465332,42.324188232421875,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="99">
+            <name>2.253</name>
+            <Point id="98">
+                <coordinates>-8.828840255737305,42.35932540893555,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="101">
+            <name>2.384</name>
+            <Point id="100">
+                <coordinates>-8.815709114074707,42.32268524169922,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="103">
+            <name>STATION</name>
+            <Point id="102">
+                <coordinates>-8.8339,42.3394,0.0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>
