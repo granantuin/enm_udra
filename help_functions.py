@@ -27,7 +27,7 @@ def get_meteogalicia_model_4Km(coorde):
       var3="&var=cfl&var=cfm&var=cft&var=HGT500&var=HGT850&var=T500&var=snow_prec&var=snowlevel"
       var=var1+var2+var3
   
-      f_day=(today+timedelta(days=2)).strftime("%Y-%m-%d") 
+      f_day=(today+timedelta(days=3)).strftime("%Y-%m-%d") 
       tail="&time_start="+today.strftime("%Y-%m-%d")+"T01%3A00%3A00Z&time_end="+f_day+"T23%3A00%3A00Z&accept=csv"
   
       dffinal=pd.DataFrame() 
@@ -43,7 +43,7 @@ def get_meteogalicia_model_4Km(coorde):
       for col in zip(dffinal.columns,new_col):
           dffinal=dffinal.rename(columns = {col[0]:col[1]})
   
-      dffinal=dffinal.set_index(pd.date_range(start=today.strftime("%Y-%m-%d"), end=(today+timedelta(days=3)).strftime("%Y-%m-%d"), freq="H")[1:-1])  
+      dffinal=dffinal.set_index(pd.date_range(start=today.strftime("%Y-%m-%d"), end=(today+timedelta(days=4)).strftime("%Y-%m-%d"), freq="H")[1:-1])  
       
     except:
 
@@ -58,7 +58,7 @@ def get_meteogalicia_model_4Km(coorde):
       var3="&var=cfl&var=cfm&var=cft&var=HGT500&var=HGT850&var=T500&var=snow_prec&var=snowlevel"
       var=var1+var2+var3
   
-      f_day=(today+timedelta(days=2)).strftime("%Y-%m-%d") 
+      f_day=(today+timedelta(days=3)).strftime("%Y-%m-%d") 
       tail="&time_start="+today.strftime("%Y-%m-%d")+"T01%3A00%3A00Z&time_end="+f_day+"T23%3A00%3A00Z&accept=csv"
   
       dffinal=pd.DataFrame() 
@@ -74,7 +74,7 @@ def get_meteogalicia_model_4Km(coorde):
       for col in zip(dffinal.columns,new_col):
           dffinal=dffinal.rename(columns = {col[0]:col[1]})
   
-      dffinal=dffinal.set_index(pd.date_range(start=today.strftime("%Y-%m-%d"), end=(today+timedelta(days=3)).strftime("%Y-%m-%d"), freq="H")[1:-1])  
+      dffinal=dffinal.set_index(pd.date_range(start=today.strftime("%Y-%m-%d"), end=(today+timedelta(days=4)).strftime("%Y-%m-%d"), freq="H")[1:-1])  
            
              
     return dffinal 
