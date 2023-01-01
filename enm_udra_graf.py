@@ -5,7 +5,7 @@ import pickle
 import streamlit as st
 import plotly.express as px
 from st_aggrid import AgGrid
-
+import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="ENM_UDRA",layout="wide")
 
