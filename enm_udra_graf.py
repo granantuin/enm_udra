@@ -79,7 +79,7 @@ plt.plot(df_show["Hora UTC"], df_show['ML dir'], marker="^", markersize=8,
          markerfacecolor='w', linestyle='')
 plt.plot(df_show["Hora UTC"], df_show['dir_WRF_l'], marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
-plt.legend(('direction ml', 'direction WRF'),)
+plt.legend(('dirección ml', 'dirección WRF'),)
 plt.grid(True)
 plt.title("Meteorological model versus machine learning")
 st.pyplot(fig)
@@ -87,11 +87,8 @@ st.pyplot(fig)
 #show results wind gust
 fig, ax = plt.subplots(figsize=(10,6))
 df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, linestyle='--');
-title = "Meteorological model versus machine learning"
-ax.set_title(title)
+ax.set_title("Meteorological model versus machine learning")
 st.pyplot(fig)
-
-
 
 
 #Download excel file
