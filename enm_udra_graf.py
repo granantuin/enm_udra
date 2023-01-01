@@ -73,7 +73,7 @@ labels = ['[0, 20]', '(20, 40]', '(40, 60]','(60, 80]', '(80, 100]',
           '(300, 320]', '(320, 340]', '(340, 360]']
 
 df_show["dir_WRF_l"] = pd.cut(df_show["WRF dir"], bins=interval,retbins=False,
-                        labels=labels).map({a:b for a,b in zip(interval,labels)}).astype(str
+                        labels=labels).map({a:b for a,b in zip(interval,labels)}).astype(str)
 
 #show results
 fig, ax = plt.subplots(figsize=(10,6))
