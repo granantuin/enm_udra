@@ -7,7 +7,7 @@ import plotly.express as px
 from st_aggrid import AgGrid
 
 
-st.set_page_config(page_title="ENM Platforma tres",layout="wide")
+st.set_page_config(page_title="ENM_UDRA",layout="wide")
 
 #load algorithm file gust
 algo_g_d0 = pickle.load(open("algorithms/gust_UDR_d0.al","rb"))
@@ -83,7 +83,7 @@ plt.plot(df_show["Hora UTC"], df_show['dir_WRF_l'], marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
 plt.legend(('direction ml', 'direction WRF'),)
 plt.grid(True)
-plt.title("Accuracy meteorological model: {}\nAccuracy machine learning: {} ".format(acc_wrf,acc_ml))
+plt.title("Meteorological model versus machine learning")
 st.pyplot(fig)
 
 
