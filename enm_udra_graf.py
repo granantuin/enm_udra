@@ -168,7 +168,7 @@ AgGrid(df_show_pre)
 
 axes = df_show_pre.plot(x='Hora UTC', y=['ML', 'WRF'], kind='bar')
 
-plt.show()
+plt.show(axes)
 
 
 
