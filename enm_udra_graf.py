@@ -164,14 +164,15 @@ df_show_pre = df_show_pre.drop(columns=["no p"])
 #df_show_pre['ML'] = df_show_pre['ML'].map("{:.0%}".format)
 df_show_pre['Hora UTC'] = pd.to_datetime(df_show_pre['Hora UTC'])
 
-st.write("#### **Probabilidad de precipitación hora anterior con Machine Learning y precipitación prevista en mm por WRF**")         
-AgGrid(df_show_pre)
-
+st.write("#### **Probabilidad de precipitación hora anterior con Machine Learning en ENM**")         
 fig, ax = plt.subplots(figsize=(16,8))
 df_show_pre.set_index('Hora UTC')["ML"].plot(ax=ax, grid=True, kind='bar')
-#ax.set_title("Modelo meteorologico WRF (MAE=2.1) versus machine learning (MAE =1.4)")
 st.pyplot(fig)
 
+st.write("#### **Precipitación hora anterior con modelo meteorológico WRF en ENM**")         
+fig, ax = plt.subplots(figsize=(16,8))
+df_show_pre.set_index('Hora UTC')["WRF"].plot(ax=ax, grid=True, kind='bar')
+st.pyplot(fig)
 
 #download  excel file  
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
