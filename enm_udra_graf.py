@@ -81,7 +81,7 @@ plt.plot(df_show["Hora UTC"], df_show['dir_WRF_l'], marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
 plt.legend(('dirección ml', 'dirección WRF'),)
 plt.grid(True)
-plt.title("Meteorological model versus machine learning")
+plt.title("Modelo meteorológico WRF (precisión 26%) versus machine learning (precisión 46%")
 st.pyplot(fig)
 
 #probabilistic results
@@ -103,7 +103,7 @@ AgGrid(round(df_prob,2))
 #show results wind gust
 fig, ax = plt.subplots(figsize=(10,6))
 df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, linestyle='--');
-ax.set_title("Meteorological model versus machine learning")
+ax.set_title("Modelo meteorologico WRF (MAE=2.1) versus machine learning (MAE =1.4)")
 st.pyplot(fig)
 
 
