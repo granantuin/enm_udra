@@ -58,7 +58,7 @@ df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),a
 st.write("#### **Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning**")
 st.write("###### **Dirección viento medio hora anterior (grados)**")
 st.write("###### **Racha máxima hora anterior (nudos)**")
-AgGrid(df_show)
+#AgGrid(df_show)
 
 #label wrf direction
 interval = pd.IntervalIndex.from_tuples([(-0.5,20), (20, 40), (40, 60),
