@@ -162,6 +162,7 @@ df_show_pre["Hora UTC"] = meteo_model.index[0:96]
 df_show_pre["WRF"] = np.around(meteo_model[:96].prec0.values,decimals=1)
 df_show_pre = df_show_pre.drop(columns=["no p"])
 #df_show_pre['ML'] = df_show_pre['ML'].map("{:.0%}".format)
+df_show_pre['Hora UTC'] = pd.to_datetime(df_show_pre['Hora UTC'])
 
 st.write("#### **Probabilidad de precipitación hora anterior con Machine Learning y precipitación prevista en mm por WRF**")         
 AgGrid(df_show_pre)
