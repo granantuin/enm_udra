@@ -85,7 +85,9 @@ plt.title("Meteorological model versus machine learning")
 st.pyplot(fig)
 
 #probabilistic results
-prob = (np.concatenate((alg["pipe"].predict_proba(model_x_var),alg1["pipe"].predict_proba(model_x_var1),alg1["pipe"].predict_proba(model_x_var1)),
+prob = (np.concatenate((algo_dir_d0["pipe"].predict_proba(model_x_var_dir_d0),
+                        algo_dir_d1["pipe"].predict_proba(model_x_var_dir_d1),
+                        algo_dir_d2["pipe"].predict_proba(model_x_var_dir_d2)),
                        axis =0)).transpose()
 df_prob = pd.DataFrame(prob,index =alg["pipe"].classes_ ).T
 
