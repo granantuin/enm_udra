@@ -84,6 +84,20 @@ plt.grid(True)
 plt.title("Meteorological model versus machine learning")
 st.pyplot(fig)
 
+#probabilistic results
+prob = (np.concatenate((alg["pipe"].predict_proba(model_x_var),alg1["pipe"].predict_proba(model_x_var1),alg1["pipe"].predict_proba(model_x_var1)),
+                       axis =0)).transpose()
+df_prob = pd.DataFrame(prob,index =alg["pipe"].classes_ ).T
+
+# Find the columns where all values are less than or equal to 5%
+cols_to_drop = df_prob.columns[df_prob.apply(lambda x: x <= 0.05).all()]
+df_prob.drop(cols_to_drop, axis=1, inplace=True)
+df_prob["time"] = meteo_model[:48].index
+
+st.write("""Probabilidades dirección del viento columnas más del 5%""")
+AgGrid(round(df_prob,2))
+
+
 #show results wind gust
 fig, ax = plt.subplots(figsize=(10,6))
 df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, linestyle='--');
