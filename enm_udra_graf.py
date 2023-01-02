@@ -169,7 +169,7 @@ fig, ax = plt.subplots(figsize=(16,8))
 df_show_pre.set_index('Hora UTC')["ML"].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
-st.write("#### **Precipitación hora anterior con modelo meteorológico WRF (Heidke Skill Score: 0.41) en ENM**")         
+st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
 fig, ax = plt.subplots(figsize=(16,8))
 df_show_pre.set_index('Hora UTC')["WRF"].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
