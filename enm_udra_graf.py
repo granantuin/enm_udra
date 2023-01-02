@@ -166,12 +166,12 @@ df_show_pre['ML'] = df_show_pre['ML'].map("{:.0%}".format)
 st.write("#### **Probabilidad de precipitación hora anterior con Machine Learning y precipitación prevista en mm por WRF**")         
 AgGrid(df_show_pre)
 
-fig, axes = df.plot(x='Hora UTC', y=['ML', 'WRF'], kind='bar', subplots=True)
+fig, axes = df_show_pre.plot(x='Hora UTC', y=['ML', 'WRF'], kind='bar', subplots=True)
 
 axes[0].set_ylabel('Probabilidades de precipitación (ML)')
 axes[0].set_title('Modelo meteorológico WRF versus machine learning')
 axes[1].set_ylabel('Precipitación modelo meteorológico WRF')
-axes[1].set_title('Número de potrancas versus tiempo')
+
 
 plt.show()
 
