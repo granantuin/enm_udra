@@ -57,7 +57,7 @@ df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),a
 
 st.write("#### **Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning**")
 st.write("###### **Dirección viento medio hora anterior (grados)**")
-st.write("###### **Racha máxima hora anterior (nudos)**")
+
 #AgGrid(df_show)
 
 #label wrf direction
@@ -81,7 +81,7 @@ plt.plot(df_show["Hora UTC"], df_show['dir_WRF_l'], marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
 plt.legend(('dirección ml', 'dirección WRF'),)
 plt.grid(True)
-plt.title("Modelo meteorológico WRF (precisión 26%) versus machine learning (precisión 46%")
+plt.title("Modelo meteorológico WRF (precisión 26%) versus machine learning (precisión 46%)")
 st.pyplot(fig)
 
 #probabilistic results
@@ -101,6 +101,7 @@ AgGrid(round(df_prob,2))
 
 
 #show results wind gust
+st.write("###### **Racha máxima hora anterior (nudos)**")
 fig, ax = plt.subplots(figsize=(10,6))
 df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, linestyle='--');
 ax.set_title("Modelo meteorologico WRF (MAE=2.1) versus machine learning (MAE =1.4)")
