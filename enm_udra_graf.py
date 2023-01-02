@@ -94,7 +94,7 @@ df_prob = pd.DataFrame(prob,index = (algo_dir_d0["pipe"].classes_ )).T
 # Find the columns where all values are less than or equal to 5%
 cols_to_drop = df_prob.columns[df_prob.apply(lambda x: x <= 0.05).all()]
 df_prob.drop(cols_to_drop, axis=1, inplace=True)
-df_prob["time"] = meteo_model[:48].index
+df_prob["time"] = meteo_model[:72].index
 
 st.write("""Probabilidades dirección del viento columnas con más del 5%""")
 AgGrid(round(df_prob,2))
