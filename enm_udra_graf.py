@@ -75,9 +75,9 @@ df_show["dir_WRF_l"] = pd.cut(df_show["WRF dir"], bins=interval,retbins=False,
 
 #show results wind direction
 fig, ax = plt.subplots(figsize=(10,6))
-plt.plot(df_show["Hora UTC"], df_show['ML dir'], marker="^", markersize=8, 
+plt.plot(df_show["Hora UTC"], df_show['ML dir'], marker="^", color="b",markersize=8, 
          markerfacecolor='w', linestyle='')
-plt.plot(df_show["Hora UTC"], df_show['dir_WRF_l'], marker="v", markersize=8,
+plt.plot(df_show["Hora UTC"], df_show['dir_WRF_l'], color="r",marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
 plt.legend(('dirección ml', 'dirección WRF'),)
 plt.grid(True)
