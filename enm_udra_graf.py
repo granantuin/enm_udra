@@ -103,7 +103,7 @@ AgGrid(round(df_prob,2))
 #show results wind gust
 st.write("###### **Racha máxima hora anterior (nudos)**")
 fig, ax = plt.subplots(figsize=(10,6))
-df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, linestyle='--');
+df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, color=["b","r"], linestyle='--');
 ax.set_title("Modelo meteorologico WRF (MAE=2.1) versus machine learning (MAE =1.4)")
 st.pyplot(fig)
 
