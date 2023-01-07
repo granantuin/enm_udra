@@ -75,8 +75,6 @@ df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),a
               
 
 st.write("#### **Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning**")
-st.write("###### **Dirección viento medio hora anterior (grados)**")
-
 
 #label wrf direction
 interval = pd.IntervalIndex.from_tuples([(-0.5,20), (20, 40), (40, 60),
@@ -112,7 +110,7 @@ plt.grid(True)
 plt.title("Modelo meteorológico WRF (precisión 37%) versus machine learning (precisión 54%)")
 st.pyplot(fig)
 
-
+st.write("###### **Dirección viento medio hora anterior (grados)**")
 #show results wind direction
 fig, ax = plt.subplots(figsize=(10,6))
 plt.plot(df_show["Hora UTC"], df_show['ML dir'], marker="^", color="b",markersize=8, 
