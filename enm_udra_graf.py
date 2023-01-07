@@ -99,6 +99,7 @@ interval = pd.IntervalIndex.from_tuples([(-1, 0.5), (.5, 1.5), (1.5, 3.3),(3.3,5
                                      (17.1,20.7),(20.7,24.4),(24.4,28.4),(28.4,32.6),(32.6,60)])
 df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval,retbins=False,
                         labels=labels).map({a:b for a,b in zip(interval,labels)}).astype(str)
+st,write(df_show)
 
 #show results Beaufort intensity
 fig, ax = plt.subplots(figsize=(10,6))
