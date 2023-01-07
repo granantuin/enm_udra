@@ -48,9 +48,9 @@ dir_ml_d1 = algo_dir_d1["pipe"].predict(model_x_var_dir_d1)
 dir_ml_d2 = algo_dir_d2["pipe"].predict(model_x_var_dir_d2)
 
 #load algorithm file spd
-algo_spdb_d0 = pickle.load(open("algorithms/spdb_udra_d0.al","rb"))
-algo_spdb_d1 = pickle.load(open("algorithms/spdb_udra_d1.al","rb"))
-algo_spdb_d2 = pickle.load(open("algorithms/spdb_udra_d2.al","rb"))
+algo_spdb_d0 = pickle.load(open("algorithms/spd_udr_1km_d0.al","rb"))
+algo_spdb_d1 = pickle.load(open("algorithms/spd_udr_1km_d1.al","rb"))
+algo_spdb_d2 = pickle.load(open("algorithms/spd_udr_1km_d2.al","rb"))
 
 #select x _var
 model_x_var_spdb_d0 = meteo_model[:24][algo_spdb_d0["x_var"]]
