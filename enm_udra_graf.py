@@ -58,9 +58,9 @@ model_x_var_spdb_d1 = meteo_model[24:48][algo_spdb_d1["x_var"]]
 model_x_var_spdb_d2 = meteo_model[48:72][algo_spdb_d2["x_var"]]
 
 #forecast machine learning wind intensity Beaufort
-spdb_ml_d0 = algo_dir_d0["pipe"].predict(model_x_var_spdb_d0)
-spdb_ml_d1 = algo_dir_d1["pipe"].predict(model_x_var_spdb_d1)
-spdb_ml_d2 = algo_dir_d2["pipe"].predict(model_x_var_spdb_d2)
+spdb_ml_d0 = algo_spdb_d0["pipe"].predict(model_x_var_spdb_d0)
+spdb_ml_d1 = algo_spdb_d1["pipe"].predict(model_x_var_spdb_d1)
+spdb_ml_d2 = algo_spdb_d2["pipe"].predict(model_x_var_spdb_d2)
 
 
 #compare results
