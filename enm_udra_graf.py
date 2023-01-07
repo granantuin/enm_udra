@@ -67,6 +67,7 @@ spdb_ml_d2 = algo_spdb_d2["pipe"].predict(model_x_var_spdb_d2)
 df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
                       "ML spdb" : np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
                       "WRF dir": dir0,
+                      "WRF spd": mod0,
                       "Hora UTC":meteo_model[:72].index,
                       "ML racha": np.concatenate((gust_ml_d0,gust_ml_d1,gust_ml_d2),axis=0),
                       "WRF racha":w_g0,
@@ -89,6 +90,14 @@ labels = ['[0, 20]', '(20, 40]', '(40, 60]','(60, 80]', '(80, 100]',
           '(200, 220]','(220, 240]', '(240, 260]', '(260, 280]', '(280, 300]',
           '(300, 320]', '(320, 340]', '(340, 360]']
 df_show["dir_WRF_l"] = pd.cut(df_show["WRF dir"], bins=interval,retbins=False,
+                        labels=labels).map({a:b for a,b in zip(interval,labels)}).astype(str)
+
+#label wrf spd to Beaufort scale
+labels = ["F0","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12"]
+interval = pd.IntervalIndex.from_tuples([(-1, 0.5), (.5, 1.5), (1.5, 3.3),(3.3,5.5),
+                                     (5.5,8),(8,10.7),(10.7,13.8),(13.8,17.1),
+                                     (17.1,20.7),(20.7,24.4),(24.4,28.4),(28.4,32.6),(32.6,60)])
+df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval,retbins=False,
                         labels=labels).map({a:b for a,b in zip(interval,labels)}).astype(str)
 
 #show results wind direction
