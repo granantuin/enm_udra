@@ -18,8 +18,9 @@ algo_g_d2 = pickle.load(open("algorithms/gust_UDR_d2.al","rb"))
 meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 
 #Select meteorological model wind features
-w_g0=(meteo_model[0:72].wind_gust0*1.94384).round(0).to_numpy()
-dir0=(meteo_model[0:72].dir0).round(0).to_numpy()
+w_g0 = (meteo_model[0:72].wind_gust0*1.94384).round(0).to_numpy()
+dir0 = (meteo_model[0:72].dir0).round(0).to_numpy()
+mod0 = (meteo_model[0:72].dir0).round(0).to_numpy()
 
 #select x _var
 model_x_var_g_d0 = meteo_model[:24][algo_g_d0["x_var"]]
@@ -46,8 +47,25 @@ dir_ml_d0 = algo_dir_d0["pipe"].predict(model_x_var_dir_d0)
 dir_ml_d1 = algo_dir_d1["pipe"].predict(model_x_var_dir_d1)
 dir_ml_d2 = algo_dir_d2["pipe"].predict(model_x_var_dir_d2)
 
+#load algorithm file spd
+algo_spdb_d0 = pickle.load(open("algorithms/spdb_udr_d0.al","rb"))
+algo_spdb_d1 = pickle.load(open("algorithms/spdb_udr_d1.al","rb"))
+algo_spdb_d2 = pickle.load(open("algorithms/spdb_udr_d2.al","rb"))
+
+#select x _var
+model_x_var_spdb_d0 = meteo_model[:24][algo_spdb_d0["x_var"]]
+model_x_var_spdb_d1 = meteo_model[24:48][algo_spdb_d1["x_var"]]
+model_x_var_spdb_d2 = meteo_model[48:72][algo_spdb_d2["x_var"]]
+
+#forecast machine learning wind intensity Beaufort
+spdb_ml_d0 = algo_dir_d0["pipe"].predict(model_x_var_spdb_d0)
+spdb_ml_d1 = algo_dir_d1["pipe"].predict(model_x_var_spdb_d1)
+spdb_ml_d2 = algo_dir_d2["pipe"].predict(model_x_var_spdb_d2)
+
+
 #compare results
 df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
+                      "ML spdb" : np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
                       "WRF dir": dir0,
                       "Hora UTC":meteo_model[:72].index,
                       "ML racha": np.concatenate((gust_ml_d0,gust_ml_d1,gust_ml_d2),axis=0),
