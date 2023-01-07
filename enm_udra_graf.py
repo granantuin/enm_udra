@@ -98,7 +98,7 @@ interval = pd.IntervalIndex.from_tuples([(-1, 0.5), (.5, 1.5), (1.5, 3.3),(3.3,5
                                      (5.5,8),(8,10.7),(10.7,13.8),(13.8,17.1),
                                      (17.1,20.7),(20.7,24.4),(24.4,28.4),(28.4,32.6),(32.6,60)])
 df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval,retbins=False,
-                        labels=labels).map({a:b for a,b in zip(interval,labels)}).astype(str)
+                        labels=labels).map({a:b for a,b in zip(interval,labels)})
 st.write(df_show)
 
 #show results Beaufort intensity
