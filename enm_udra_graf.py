@@ -77,7 +77,6 @@ df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),a
 st.write("#### **Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning**")
 st.write("###### **Dirección viento medio hora anterior (grados)**")
 
-#AgGrid(df_show)
 
 #label wrf direction
 interval = pd.IntervalIndex.from_tuples([(-0.5,20), (20, 40), (40, 60),
@@ -101,6 +100,7 @@ df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval,retbins=False,
                         labels=labels).map({a:b for a,b in zip(interval,labels)})
 st.write(df_show)
 
+st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
 #show results Beaufort intensity
 fig, ax = plt.subplots(figsize=(10,6))
 plt.plot(df_show["Hora UTC"], df_show['ML spdb'], marker="^", color="b",markersize=8, 
