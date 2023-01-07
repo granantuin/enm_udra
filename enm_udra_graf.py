@@ -20,7 +20,7 @@ meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 #Select meteorological model wind features
 w_g0 = (meteo_model[0:72].wind_gust0*1.94384).round(0).to_numpy()
 dir0 = (meteo_model[0:72].dir0).round(0).to_numpy()
-mod0 = (meteo_model[0:72].dir0).round(0).to_numpy()
+mod0 = (meteo_model[0:72].mod0).round(0).to_numpy()
 
 #select x _var
 model_x_var_g_d0 = meteo_model[:24][algo_g_d0["x_var"]]
@@ -65,7 +65,7 @@ spdb_ml_d2 = algo_spdb_d2["pipe"].predict(model_x_var_spdb_d2)
 
 #compare results
 df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
-                      "ML spdb" : np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
+                      "ML spdb" : np.concatenate((spdb_ml_d0,spdb_ml_d1,spdb_ml_d2),axis=0),
                       "WRF dir": dir0,
                       "WRF spd": mod0,
                       "Hora UTC":meteo_model[:72].index,
