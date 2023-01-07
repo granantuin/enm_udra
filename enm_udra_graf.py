@@ -96,7 +96,7 @@ interval = pd.IntervalIndex.from_tuples([(-1, 0.5), (.5, 1.5), (1.5, 3.3),(3.3,5
                                      (17.1,20.7),(20.7,24.4),(24.4,28.4),(28.4,32.6),(32.6,60)])
 df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval,retbins=False,
                         labels=labels).map({a:b for a,b in zip(interval,labels)})
-st.write(df_show)
+#st.write(df_show)
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
 #show results Beaufort intensity
@@ -109,6 +109,21 @@ plt.legend(('Beaufort ml', 'Beaufort WRF'),)
 plt.grid(True)
 plt.title("Modelo meteorológico WRF (precisión 37%) versus machine learning (precisión 54%)")
 st.pyplot(fig)
+
+#probabilistic results
+prob = (np.concatenate((algo_spdb_d0["pipe"].predict_proba(model_x_var_spdb_d0),
+                        algo_spdb_d1["pipe"].predict_proba(model_x_var_spdb_d1),
+                        algo_spdb_d2["pipe"].predict_proba(model_x_var_spdb_d2)),
+                       axis =0)).transpose()
+df_prob = pd.DataFrame(prob,index = (algo_spdb_d0["pipe"].classes_ )).T
+
+# Find the columns where all values are less than or equal to 5%
+cols_to_drop = df_prob.columns[df_prob.apply(lambda x: x <= 0.05).all()]
+df_prob.drop(cols_to_drop, axis=1, inplace=True)
+df_prob["time"] = meteo_model[:72].index
+
+st.write("""Probabilidades intensidad del viento columnas con más del 5%""")
+AgGrid(round(df_prob,2))
 
 st.write("###### **Dirección viento medio hora anterior (grados)**")
 #show results wind direction
