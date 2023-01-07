@@ -100,6 +100,18 @@ interval = pd.IntervalIndex.from_tuples([(-1, 0.5), (.5, 1.5), (1.5, 3.3),(3.3,5
 df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval,retbins=False,
                         labels=labels).map({a:b for a,b in zip(interval,labels)}).astype(str)
 
+#show results Beaufort intensity
+fig, ax = plt.subplots(figsize=(10,6))
+plt.plot(df_show["Hora UTC"], df_show['ML spdb'], marker="^", color="b",markersize=8, 
+         markerfacecolor='w', linestyle='')
+plt.plot(df_show["Hora UTC"], df_show['WRF spd'], color="r",marker="v", markersize=8,
+         markerfacecolor='w', linestyle='');
+plt.legend(('Beaufort ml', 'Beaufort WRF'),)
+plt.grid(True)
+plt.title("Modelo meteorológico WRF (precisión 37%) versus machine learning (precisión 54%)")
+st.pyplot(fig)
+
+
 #show results wind direction
 fig, ax = plt.subplots(figsize=(10,6))
 plt.plot(df_show["Hora UTC"], df_show['ML dir'], marker="^", color="b",markersize=8, 
