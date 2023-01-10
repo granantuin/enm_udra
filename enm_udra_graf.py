@@ -6,6 +6,8 @@ import streamlit as st
 import plotly.express as px
 from st_aggrid import AgGrid
 import matplotlib.pyplot as plt
+import requests
+import json
 
 st.set_page_config(page_title="ENM_UDRA",layout="wide")
 
@@ -227,6 +229,36 @@ fig, ax = plt.subplots(figsize=(16,8))
 df_show_pre.set_index('Hora UTC')["WRF"].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
+#Marin Precipitation and wind
+r = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005&idParam=VV_AVG_10m,DV_AVG_10m,VV_RACHA_10m,PP_SUM_1.5m&numHoras=24")
+
+json_data = json.loads(r.content)
+time, spd_o, dir_o, gust_o,prec_o = [],[],[],[],[]
+for c in json_data["listHorarios"]:
+  for c1 in c['listaInstantes']:
+    time.append(c1['instanteLecturaUTC'])
+    spd_o.append(c1['listaMedidas'][3]["valor"])
+    dir_o.append(c1['listaMedidas'][0]["valor"])
+    gust_o.append(c1['listaMedidas'][2]["valor"])
+    prec_o.append(c1['listaMedidas'][1]["valor"])
+    
+df_mar = pd.DataFrame({"time":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o,
+                       "prec_o":prec_o})  
+df_mar['time'] = pd.to_datetime(df_mar['time'])
+
+# wind intensity m/s to knots
+fig, ax = plt.subplots(figsize=(8,6))
+(df_mar.set_index("time")[["spd_o","gust_o"]]*1.94384).plot(title="Intensidad nudos. Racha máxima y velocidad media (hora anterior))",ax=ax,);
+ax.grid(which = "both")
+st.pyplot(fig)
+
+# wind direction
+fig, ax = plt.subplots(figsize=(8,6))
+df_mar.set_index("time")["dir_o"].plot(title="dirección viento media (hora anterior))",ax=ax,);
+ax.grid(which = "both")
+st.pyplot(fig)
+
+
 #download  excel file  
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
 
@@ -239,7 +271,9 @@ if st.checkbox("Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia"):
                              color_continuous_scale=px.colors.cyclical.IceFire,)
   st.plotly_chart(dist_map)
   
-     
+
+  
+  
 #link to actual  Marin station data
 st.write("Estación Marín en tiempo real [enlace](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=14005&dataSeleccionada="+today_s)
 
