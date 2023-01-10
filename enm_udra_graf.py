@@ -228,10 +228,6 @@ st.write("#### **Probabilidad de precipitación hora anterior con Machine Learni
 #st.pyplot(fig)
 st.bar_chart(df_show_pre, x = "Hora UTC", y = "ML")
 
-st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
-fig, ax = plt.subplots(figsize=(16,8))
-df_show_pre.set_index('Hora UTC')["WRF"].plot(ax=ax, grid=True, kind='bar')
-st.pyplot(fig)
 
 #Marin Precipitation and wind
 r = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005&idParam=VV_AVG_10m,DV_AVG_10m,VV_RACHA_10m,PP_SUM_1.5m&numHoras=24")
@@ -269,6 +265,13 @@ fig, ax = plt.subplots(figsize=(8,6))
 
 #fig = px.bar(df_mar, x=df_mar.time, y="prec_o")
 st.bar_chart(df_mar,x="time", y="prec_o")
+
+
+st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
+
+df_con = pd.concatenate([df_show_pre.set_index('Hora UTC')["WRF"],df_mar.set_index("time")[prec_o]], axis =1)
+
+st.bar_chart(df_con)
 
 
 #download  excel file  
