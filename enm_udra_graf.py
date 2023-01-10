@@ -262,10 +262,8 @@ st.pyplot(fig)
 st.write("#### **precipitación litros/m2 (hora anterior)**")
 st.bar_chart(df_mar,x="time", y="prec_o")
 
-
 st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
-st.bar_chart(df_show_prec,x="Hora UTC",y="WRF")
-
+st.bar_chart(df_show_pre, x = "Hora UTC", y = "WRF")
 
 #download  excel file  
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
@@ -278,10 +276,7 @@ if st.checkbox("Mapa situación ENM y puntos modelo WRF (4 Km) Meteogalicia"):
                              lat='lat', lon='lon',color='distance',
                              color_continuous_scale=px.colors.cyclical.IceFire,)
   st.plotly_chart(dist_map)
-  
-
-  
-  
+ 
 #link to actual  Marin station data
 st.write("Estación Marín en tiempo real [enlace](https://www.meteogalicia.gal/observacion/meteovisor/indexChartDezHoxe.action?idEstacion=14005&dataSeleccionada="+today_s)
 
