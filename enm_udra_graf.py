@@ -214,7 +214,7 @@ prec_ml2 = algo_prec_d2["pipe"].predict_proba(model_x_var_p2)
 prec_ml3 = algo_prec_d3["pipe"].predict_proba(model_x_var_p3)
 
 #show results
-df_show_pre = pd.DataFrame(np.concatenate((prec_ml0,prec_ml1,prec_ml2,prec_ml3),axis=0),
+df_show_pre = pd.DataFrame(round(np.concatenate((prec_ml0,prec_ml1,prec_ml2,prec_ml3),2),axis=0),
                          columns=["no p","ML"])
 df_show_pre["Hora UTC"] = meteo_model.index[0:96]
 df_show_pre["WRF"] = np.around(meteo_model[:96].prec0.values,decimals=1)
