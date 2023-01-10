@@ -246,6 +246,15 @@ df_mar = pd.DataFrame({"time":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o,
                        "prec_o":prec_o})  
 df_mar['time'] = pd.to_datetime(df_mar['time'])
 
+
+#rain
+st.write("#### **precipitación litros/m2 (hora anterior)**")
+st.bar_chart(df_mar,x="time", y="prec_o")
+
+st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
+st.bar_chart(df_show_pre, x = "Hora UTC", y = "WRF")
+
+
 # wind intensity m/s to knots
 fig, ax = plt.subplots(figsize=(8,6))
 (df_mar.set_index("time")[["spd_o","gust_o"]]*1.94384).plot(title="Intensidad nudos. Racha máxima y velocidad media (hora anterior))",ax=ax,);
@@ -257,13 +266,6 @@ fig, ax = plt.subplots(figsize=(8,6))
 df_mar.set_index("time")["dir_o"].plot(title="dirección viento media (hora anterior))",ax=ax,);
 ax.grid(which = "both")
 st.pyplot(fig)
-
-#rain
-st.write("#### **precipitación litros/m2 (hora anterior)**")
-st.bar_chart(df_mar,x="time", y="prec_o")
-
-st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
-st.bar_chart(df_show_pre, x = "Hora UTC", y = "WRF")
 
 #download  excel file  
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
