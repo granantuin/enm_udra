@@ -267,7 +267,7 @@ fig, ax = plt.subplots(figsize=(8,6))
 #ax.grid(which = "both")
 
 fig = px.bar(df_mar, x=df_mar.time, y="prec_o")
-st.pyplot(fig)
+st.bar_chart(fig)
 
 
 #download  excel file  
