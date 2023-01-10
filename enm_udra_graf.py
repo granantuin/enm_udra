@@ -258,6 +258,12 @@ df_mar.set_index("time")["dir_o"].plot(title="dirección viento media (hora ante
 ax.grid(which = "both")
 st.pyplot(fig)
 
+#rain
+fig, ax = plt.subplots(figsize=(8,6))
+df_mar.set_index("time")["prec_o"].plot(title="precipitación litros/m2 (hora anterior))",ax=ax,kind ="bar");
+ax.grid(which = "both")
+st.pyplot(fig)
+
 
 #download  excel file  
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
