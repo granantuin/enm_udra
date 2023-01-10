@@ -269,7 +269,7 @@ st.bar_chart(df_mar,x="time", y="prec_o")
 
 st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
 
-df_con = pd.concatenate([df_show_pre.set_index('Hora UTC')["WRF"],df_mar.set_index("time")[prec_o]], axis =1)
+df_con = pd.concat([df_show_pre.set_index('Hora UTC')["WRF"],df_mar.set_index("time")[prec_o]], axis =1)
 
 st.bar_chart(df_con)
 
