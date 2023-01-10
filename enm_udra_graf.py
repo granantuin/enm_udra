@@ -266,8 +266,8 @@ fig, ax = plt.subplots(figsize=(8,6))
 #df_mar.set_index("time")["prec_o"].plot(title="precipitación litros/m2 (hora anterior))",ax=ax,kind ="bar");
 #ax.grid(which = "both")
 
-fig = px.bar(df_mar, x=df_mar.time, y="prec_o")
-st.bar_chart(df_mar[["time","prec_o"]])
+#fig = px.bar(df_mar, x=df_mar.time, y="prec_o")
+st.bar_chart(df_mar,x="time", y="prec_o")
 
 
 #download  excel file  
