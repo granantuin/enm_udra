@@ -260,7 +260,7 @@ fig, ax = plt.subplots(figsize=(8,6))
 #(df_mar.set_index("time")[["spd_o","gust_o"]]*1.94384).plot(title="Intensidad nudos. Racha máxima y velocidad media (hora anterior) ENM ",ax=ax,);
 #ax.grid(which = "both")
 #st.pyplot(fig)
-st.line_chart(df_mar, x= "time", y = "spd_o","gust_o")
+st.line_chart(df_mar, x= "time", y = ["spd_o","gust_o"])
 
 # wind direction
 fig, ax = plt.subplots(figsize=(8,6))
