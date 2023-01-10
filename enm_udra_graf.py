@@ -8,6 +8,9 @@ from st_aggrid import AgGrid
 import matplotlib.pyplot as plt
 import requests
 import json
+import plotly.express as px
+
+
 
 st.set_page_config(page_title="ENM_UDRA",layout="wide")
 
@@ -260,8 +263,10 @@ st.pyplot(fig)
 
 #rain
 fig, ax = plt.subplots(figsize=(8,6))
-df_mar.set_index("time")["prec_o"].plot(title="precipitación litros/m2 (hora anterior))",ax=ax,kind ="bar");
-ax.grid(which = "both")
+#df_mar.set_index("time")["prec_o"].plot(title="precipitación litros/m2 (hora anterior))",ax=ax,kind ="bar");
+#ax.grid(which = "both")
+
+fig = px.bar(df_mar, x=df_mar.time, y="prec_o")
 st.pyplot(fig)
 
 
