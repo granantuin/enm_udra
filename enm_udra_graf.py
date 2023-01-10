@@ -223,9 +223,10 @@ df_show_pre = df_show_pre.drop(columns=["no p"])
 df_show_pre['Hora UTC'] = pd.to_datetime(df_show_pre['Hora UTC'])
 
 st.write("#### **Probabilidad de precipitación hora anterior con Machine Learning (Heidke Skill Score: 0.53) en ENM**")         
-fig, ax = plt.subplots(figsize=(16,8))
-df_show_pre.set_index('Hora UTC')["ML"].plot(ax=ax, grid=True, kind='bar')
-st.pyplot(fig)
+#fig, ax = plt.subplots(figsize=(10,8))
+#df_show_pre.set_index('Hora UTC')["ML"].plot(ax=ax, grid=True, kind='bar')
+#st.pyplot(fig)
+st.chart_bar(df_show_pre, x = "time", y = "ML")
 
 st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
 fig, ax = plt.subplots(figsize=(16,8))
