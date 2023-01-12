@@ -75,13 +75,36 @@ time, spd_o, dir_o, gust_o = [],[],[],[]
 for c in json_data["listHorarios"]:
   for c1 in c['listaInstantes']:
     time.append(c1['instanteLecturaUTC'])
-    spd_o.append(c1['listaMedidas'][1]["valor"])
+    spd_o.append(c1['listaMedidas'][2]["valor"])
     dir_o.append(c1['listaMedidas'][0]["valor"])
-    gust_o.append(c1['listaMedidas'][2]["valor"])
-    
+    gust_o.append(c1['listaMedidas'][1]["valor"])
     
 df_udr = pd.DataFrame({"time":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o})  
 df_udr['time'] = pd.to_datetime(df_udr['time'])
+
+#Wind directions intervals
+interval_d = pd.IntervalIndex.from_tuples([(-0.5,20), (20, 40), (40, 60),
+                                           (60,80),(80,100),(100,120),(120,140),(140,160),
+                                           (160,180),(180,200),(200,220),(220,240),
+                                           (240,260),(260,280),(280,300),(300,320),
+                                           (320,340),(340,360)])
+labels_d = ['[0, 20]', '(20, 40]', '(40, 60]','(60, 80]', '(80, 100]',
+          '(100, 120]', '(120, 140]','(140, 160]', '(160, 180]', '(180, 200]',
+          '(200, 220]','(220, 240]', '(240, 260]', '(260, 280]', '(280, 300]',
+          '(300, 320]', '(320, 340]', '(340, 360]']
+df_udr["dir_o_l"] = pd.cut(df_show["dir_o"], bins=interval_d,retbins=False,
+                        labels=labels_d).map({a:b for a,b in zip(interval,labels)}).astype(str)
+
+#Wind intensity Beaufort
+labels_b = ["F0","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12"]
+interval_b = pd.IntervalIndex.from_tuples([(-1, 0.5), (.5, 1.5), (1.5, 3.3),(3.3,5.5),
+                                     (5.5,8),(8,10.7),(10.7,13.8),(13.8,17.1),
+                                     (17.1,20.7),(20.7,24.4),(24.4,28.4),(28.4,32.6),(32.6,60)])
+df_udr["spd_o_l"] = pd.cut(df_show["spd_o"], bins=interval_b,retbins=False,
+                        labels=labels_b).map({a:b for a,b in zip(interval,labels)})
+
+#Wind gust to knots
+df_udr["gust_o_l"] = round(df_udr.gust_o,2)
 
 st.write(df_udr)
 
@@ -100,25 +123,12 @@ df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),a
 st.write("#### **Pronóstico viento en estación cabo Udra Modelo WRF de Meteogalicia y Machine Learning**")
 
 #label wrf direction
-interval = pd.IntervalIndex.from_tuples([(-0.5,20), (20, 40), (40, 60),
-                                           (60,80),(80,100),(100,120),(120,140),(140,160),
-                                           (160,180),(180,200),(200,220),(220,240),
-                                           (240,260),(260,280),(280,300),(300,320),
-                                           (320,340),(340,360)])
-labels = ['[0, 20]', '(20, 40]', '(40, 60]','(60, 80]', '(80, 100]',
-          '(100, 120]', '(120, 140]','(140, 160]', '(160, 180]', '(180, 200]',
-          '(200, 220]','(220, 240]', '(240, 260]', '(260, 280]', '(280, 300]',
-          '(300, 320]', '(320, 340]', '(340, 360]']
-df_show["dir_WRF_l"] = pd.cut(df_show["WRF dir"], bins=interval,retbins=False,
-                        labels=labels).map({a:b for a,b in zip(interval,labels)}).astype(str)
+df_show["dir_WRF_l"] = pd.cut(df_show["WRF dir"], bins=interval_d,retbins=False,
+                        labels=labels_d).map({a:b for a,b in zip(interval,labels)}).astype(str)
 
 #label wrf spd to Beaufort scale
-labels = ["F0","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12"]
-interval = pd.IntervalIndex.from_tuples([(-1, 0.5), (.5, 1.5), (1.5, 3.3),(3.3,5.5),
-                                     (5.5,8),(8,10.7),(10.7,13.8),(13.8,17.1),
-                                     (17.1,20.7),(20.7,24.4),(24.4,28.4),(28.4,32.6),(32.6,60)])
-df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval,retbins=False,
-                        labels=labels).map({a:b for a,b in zip(interval,labels)})
+df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval_b,retbins=False,
+                        labels=labels_b).map({a:b for a,b in zip(interval,labels)})
 #st.write(df_show)
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
