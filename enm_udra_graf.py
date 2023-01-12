@@ -92,8 +92,8 @@ labels_d = ['[0, 20]', '(20, 40]', '(40, 60]','(60, 80]', '(80, 100]',
           '(100, 120]', '(120, 140]','(140, 160]', '(160, 180]', '(180, 200]',
           '(200, 220]','(220, 240]', '(240, 260]', '(260, 280]', '(280, 300]',
           '(300, 320]', '(320, 340]', '(340, 360]']
-df_udr["dir_o_l"] = pd.cut(df_udr["dir_o"], bins=interval_d,retbins=False,
-                        labels=labels_d).map({a:b for a,b in zip(interval,labels)}).astype(str)
+df_udr["dir_o_l"] = pd.cut(df_udr["dir_o"], bins = interval_d,retbins=False,
+                        labels = labels_d).map({a:b for a,b in zip(interval,labels)}).astype(str)
 
 #Wind intensity Beaufort
 labels_b = ["F0","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12"]
