@@ -104,7 +104,7 @@ df_udr["spd_o_l"] = pd.cut(df_udr["spd_o"], bins=interval_b,retbins=False,
                         labels=labels_b).map({a:b for a,b in zip(interval_b,labels_b)})
 
 #Wind gust to knots
-df_udr["gust_o_l"] = round(df_udr.gust_o,2)
+df_udr["gust_o_l"] = round(df_udr.gust_o*1.94384,0)
 
 st.write(df_udr)
 
@@ -124,7 +124,7 @@ st.write("#### **Pronóstico viento en estación cabo Udra Modelo WRF de Meteoga
 
 #label wrf direction
 df_show["dir_WRF_l"] = pd.cut(df_show["WRF dir"], bins=interval_d,retbins=False,
-                        labels=labels_d).map({a:b for a,b in zip(interval,labels)}).astype(str)
+                        labels=labels_d).map({a:b for a,b in zip(interval_d,labels_d)}).astype(str)
 
 #label wrf spd to Beaufort scale
 df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval_b,retbins=False,
