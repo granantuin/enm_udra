@@ -68,7 +68,7 @@ spdb_ml_d1 = algo_spdb_d1["pipe"].predict(model_x_var_spdb_d1)
 spdb_ml_d2 = algo_spdb_d2["pipe"].predict(model_x_var_spdb_d2)
 
 #Udra wind
-r = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005&idParam=VV_AVG_10m,DV_AVG_10m,VV_RACHA_10m&numHoras=24")
+r = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=10905&idParam=VV_AVG_10m,DV_AVG_10m,VV_RACHA_10m&numHoras=24")
 
 json_data = json.loads(r.content)
 time, spd_o, dir_o, gust_o = [],[],[],[]
