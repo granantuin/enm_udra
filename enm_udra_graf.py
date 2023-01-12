@@ -75,7 +75,7 @@ time, spd_o, dir_o, gust_o = [],[],[],[]
 for c in json_data["listHorarios"]:
   for c1 in c['listaInstantes']:
     time.append(c1['instanteLecturaUTC'])
-    spd_o.append(c1['listaMedidas'][3]["valor"])
+    spd_o.append(c1['listaMedidas'][1]["valor"])
     dir_o.append(c1['listaMedidas'][0]["valor"])
     gust_o.append(c1['listaMedidas'][2]["valor"])
     
