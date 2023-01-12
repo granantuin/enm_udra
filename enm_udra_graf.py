@@ -81,7 +81,7 @@ for c in json_data["listHorarios"]:
     
     
 df_udr = pd.DataFrame({"time":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o})  
-df_udr['time'] = pd.to_datetime(df_mar['time'])
+df_udr['time'] = pd.to_datetime(df_udr['time'])
 
 st.write(df_udr)
 
