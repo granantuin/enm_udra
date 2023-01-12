@@ -128,7 +128,7 @@ df_show["dir_WRF_l"] = pd.cut(df_show["WRF dir"], bins=interval_d,retbins=False,
 
 #label wrf spd to Beaufort scale
 df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval_b,retbins=False,
-                        labels=labels_b).map({a:b for a,b in zip(interval,labels)})
+                        labels=labels_b).map({a:b for a,b in zip(interval_b,labels_b)})
 #st.write(df_show)
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
