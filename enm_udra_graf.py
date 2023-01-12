@@ -67,6 +67,24 @@ spdb_ml_d0 = algo_spdb_d0["pipe"].predict(model_x_var_spdb_d0)
 spdb_ml_d1 = algo_spdb_d1["pipe"].predict(model_x_var_spdb_d1)
 spdb_ml_d2 = algo_spdb_d2["pipe"].predict(model_x_var_spdb_d2)
 
+#Udra wind
+r = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005&idParam=VV_AVG_10m,DV_AVG_10m,VV_RACHA_10m&numHoras=24")
+
+json_data = json.loads(r.content)
+time, spd_o, dir_o, gust_o = [],[],[],[]
+for c in json_data["listHorarios"]:
+  for c1 in c['listaInstantes']:
+    time.append(c1['instanteLecturaUTC'])
+    spd_o.append(c1['listaMedidas'][3]["valor"])
+    dir_o.append(c1['listaMedidas'][0]["valor"])
+    gust_o.append(c1['listaMedidas'][2]["valor"])
+    
+    
+df_udr = pd.DataFrame({"time":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o})  
+df_udr['time'] = pd.to_datetime(df_mar['time'])
+
+st.write(df_udr)
+
 
 #compare results
 df_show=pd.DataFrame({"ML dir": np.concatenate((dir_ml_d0,dir_ml_d1,dir_ml_d2),axis=0),
