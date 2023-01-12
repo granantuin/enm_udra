@@ -93,7 +93,7 @@ labels_d = ['[0, 20]', '(20, 40]', '(40, 60]','(60, 80]', '(80, 100]',
           '(200, 220]','(220, 240]', '(240, 260]', '(260, 280]', '(280, 300]',
           '(300, 320]', '(320, 340]', '(340, 360]']
 df_udr["dir_o_l"] = pd.cut(df_udr["dir_o"], bins = interval_d,retbins=False,
-                        labels = labels_d).map({a:b for a,b in zip(interval,labels)}).astype(str)
+                        labels = labels_d).map({a:b for a,b in zip(interval_d,labels_d)}).astype(str)
 
 #Wind intensity Beaufort
 labels_b = ["F0","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12"]
@@ -101,7 +101,7 @@ interval_b = pd.IntervalIndex.from_tuples([(-1, 0.5), (.5, 1.5), (1.5, 3.3),(3.3
                                      (5.5,8),(8,10.7),(10.7,13.8),(13.8,17.1),
                                      (17.1,20.7),(20.7,24.4),(24.4,28.4),(28.4,32.6),(32.6,60)])
 df_udr["spd_o_l"] = pd.cut(df_udr["spd_o"], bins=interval_b,retbins=False,
-                        labels=labels_b).map({a:b for a,b in zip(interval,labels)})
+                        labels=labels_b).map({a:b for a,b in zip(interval_b,labels_b)})
 
 #Wind gust to knots
 df_udr["gust_o_l"] = round(df_udr.gust_o,2)
