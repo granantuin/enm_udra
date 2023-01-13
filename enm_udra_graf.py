@@ -243,7 +243,8 @@ st.pyplot(fig)
 
 st.write("###### **Racha máxima hora anterior (nudos) pronóstico 72 horas**")
 fig, ax = plt.subplots(figsize=(10,6))
-df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, color=["b","r"], linestyle='--');
+df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, color=["b","r"], linestyle='--')
+plt.grid(True, which = "both", axis = "both")
 st.pyplot(fig)
 
 
@@ -338,18 +339,6 @@ st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorol
 st.bar_chart(df_show_pre, x = "Hora UTC", y = "WRF")
 
 
-# wind intensity m/s to knots
-fig, ax = plt.subplots(figsize=(8,6))
-#(df_mar.set_index("time")[["spd_o","gust_o"]]*1.94384).plot(title="Intensidad nudos. Racha máxima y velocidad media (hora anterior) ENM ",ax=ax,);
-#ax.grid(which = "both")
-#st.pyplot(fig)
-st.line_chart(df_mar, x= "time", y = ["spd_o","gust_o"])
-
-# wind direction
-fig, ax = plt.subplots(figsize=(8,6))
-df_mar.set_index("time")["dir_o"].plot(title="dirección viento media (hora anterior) ENM",ax=ax,);
-ax.grid(which = "both")
-st.pyplot(fig)
 
 #download  excel file  
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
