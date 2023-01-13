@@ -209,8 +209,8 @@ AgGrid(round(df_prob,2))
 
 #show results wind gust
 #mae
-mae_ml = round(mean_absolute_error(df_rw."gust_o_l",df_rw["ML racha"]),2)
-mae_wrf = round(mean_absolute_error(df_rw."gust_o_l",df_rw["WRF racha"]),2)
+mae_ml = round(mean_absolute_error(df_rw["gust_o_l"],df_rw["ML racha"]),2)
+mae_wrf = round(mean_absolute_error(df_rw["gust_o_l"],df_rw["WRF racha"]),2)
 
 
 st.write("###### **Racha máxima hora anterior (nudos)**")
