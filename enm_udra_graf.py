@@ -216,7 +216,7 @@ mae_wrf = round(mean_absolute_error(df_rw["gust_o_l"],df_rw["WRF racha"]),2)
 st.write("###### **Racha máxima hora anterior (nudos)**")
 fig, ax = plt.subplots(figsize=(10,6))
 df_rw.set_index("Hora UTC")[["ML racha","WRF racha","gust_o_l"]].plot(grid=True, ax=ax, color=["b","r","g"], linestyle='--');
-ax.set_title("Error absoluto medio actual modelo meteorológico: {:.0%}. Referencia: 2.1\nError absolñuto medio actual machine learning: {:.0%}. Referencia: 1.4".format(mae_wrf,mae_ml))
+ax.set_title("Error absoluto medio actual con modelo meteorológico: {}. Referencia: 2.1\nError absoluto medio actual con machine learning: {}. Referencia: 1.4".format(mae_wrf,mae_ml))
 #ax.set_title("Modelo meteorologico WRF (MAE=2.1) versus machine learning (MAE =1.4)")
 st.pyplot(fig)
 
