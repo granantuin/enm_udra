@@ -140,6 +140,10 @@ df_rw = pd.concat([df_show.set_index("Hora UTC"),df_udr.set_index("Hora UTC")],a
 df_rw["Hora UTC"] = df_rw.index
 st.write(df_rw)
 
+#accuracy
+acc_ml = round(accuracy_score(df_rw.spd_o_l,df_rw["ML spdb"]),2)
+acc_wrf = round(accuracy_score(df_rw.spd_o_l,df_rw.["spd_WRF_l"]),2)
+
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
 #show results Beaufort intensity
 fig, ax = plt.subplots(figsize=(10,6))
@@ -149,9 +153,10 @@ plt.plot(df_rw["Hora UTC"], df_rw['spd_o_l'], marker="*", color="g",markersize=8
          markerfacecolor='w', linestyle='')
 plt.plot(df_rw["Hora UTC"], df_rw['spd_WRF_l'], color="r",marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
-plt.legend(('Beaufort ml', 'Beaufort WRF'),)
+plt.legend(('Beaufort ml', "Beaufort observed",'Beaufort WRF'),)
 plt.grid(True)
-plt.title("Modelo meteorológico WRF (precisión 37%) versus machine learning (precisión 54%)")
+plt.title("Precisión actual modelo meteorológico: {:.0%}. Reference: 37%\nPrecisión actual machine learning: {:.0%}. Reference: 54%".format(acc_wrf,acc_ml)
+#plt.title("Modelo meteorológico WRF (precisión 37%) versus machine learning (precisión 54%)")
 st.pyplot(fig)
 
 #probabilistic results
