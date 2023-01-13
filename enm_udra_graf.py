@@ -134,7 +134,7 @@ df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval_b,retbins=False,
 df_show['Hora UTC'] = pd.to_datetime(df_show['Hora UTC'])
 st.write(df_show)
 
-df_rw = pd.concat([df_show.set_index("Hora UTC"),df_udr.set_index("Hora UTC")],axis=1)
+df_rw = pd.concat([df_show.set_index("Hora UTC"),df_udr.set_index("Hora UTC")],axis=1).dropna()
 st.write(df_rw)
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
