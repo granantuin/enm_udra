@@ -80,7 +80,7 @@ for c in json_data["listHorarios"]:
     gust_o.append(c1['listaMedidas'][1]["valor"])
     
 df_udr = pd.DataFrame({"Hora UTC":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o})  
-df_udr['time'] = pd.to_datetime(df_udr['time'])
+df_udr['Hora UTC'] = pd.to_datetime(df_udr['Hora UTC'])
 
 #Wind directions intervals
 interval_d = pd.IntervalIndex.from_tuples([(-0.5,20), (20, 40), (40, 60),
