@@ -153,10 +153,9 @@ plt.plot(df_rw["Hora UTC"], df_rw['spd_o_l'], marker="*", color="g",markersize=8
          markerfacecolor='w', linestyle='')
 plt.plot(df_rw["Hora UTC"], df_rw['spd_WRF_l'], color="r",marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
-plt.legend(('Beaufort ml', "Beaufort observed",'Beaufort WRF'),)
+plt.legend(('Beaufort ml', "Beaufort observada",'Beaufort WRF'),)
 plt.grid(True)
-plt.title("Precisión actual modelo meteorológico: {:.0%}. Reference: 37%\nPrecisión actual machine learning: {:.0%}. Reference: 54%".format(acc_wrf,acc_ml))
-#plt.title("Modelo meteorológico WRF (precisión 37%) versus machine learning (precisión 54%)")
+plt.title("Precisión actual modelo meteorológico: {:.0%}. Referencia: 37%\nPrecisión actual machine learning: {:.0%}. Referencia: 54%".format(acc_wrf,acc_ml))
 st.pyplot(fig)
 
 #probabilistic results
@@ -175,15 +174,21 @@ st.write("""Probabilidades intensidad del viento columnas con más del 5%""")
 AgGrid(round(df_prob,2))
 
 st.write("###### **Dirección viento medio hora anterior (grados)**")
+#accuracy
+acc_ml = round(accuracy_score(df_rw.dir_o_l,df_rw["ML dir"]),2)
+acc_wrf = round(accuracy_score(df_rw.dir_o_l,df_rw["dir_WRF_l"]),2)
+
 #show results wind direction
 fig, ax = plt.subplots(figsize=(10,6))
-plt.plot(df_show["Hora UTC"], df_show['ML dir'], marker="^", color="b",markersize=8, 
+plt.plot(df_rw["Hora UTC"], df_rw['ML dir'], marker="^", color="b",markersize=8, 
          markerfacecolor='w', linestyle='')
-plt.plot(df_show["Hora UTC"], df_show['dir_WRF_l'], color="r",marker="v", markersize=8,
+plt.plot(df_rw["Hora UTC"], df_rw['dir_o_l'], marker="*", color="g",markersize=8, 
+         markerfacecolor='w', linestyle='')
+plt.plot(df_rw["Hora UTC"], df_rw['dir_WRF_l'], color="r",marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
-plt.legend(('dirección ml', 'dirección WRF'),)
+plt.legend(('dirección ml', "dirección observada, 'dirección WRF'))
 plt.grid(True)
-plt.title("Modelo meteorológico WRF (precisión 26%) versus machine learning (precisión 46%)")
+plt.title("Precisión actual modelo meteorológico: {:.0%}. Referencia: 26%\nPrecisión actual machine learning: {:.0%}. Referencia: 46%".format(acc_wrf,acc_ml))            
 st.pyplot(fig)
 
 #probabilistic results
