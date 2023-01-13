@@ -9,6 +9,9 @@ import matplotlib.pyplot as plt
 import requests
 import json
 import plotly.express as px
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import mean_absolute_error
+
 
 
 
@@ -134,8 +137,7 @@ df_show['Hora UTC'] = pd.to_datetime(df_show['Hora UTC'])
 st.write(df_show)
 
 df_rw = pd.concat([df_show.set_index("Hora UTC"),df_udr.set_index("Hora UTC")],axis=1).dropna()
-df_rw = df_rw.reset_index(inplace=True)
-df_rw = df_rw.rename(columns = {'index':'Hora UTC'})
+df_rw["Hora UTC"] = df_rw.index
 st.write(df_rw)
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
