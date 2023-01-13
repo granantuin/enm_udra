@@ -130,19 +130,21 @@ df_show["dir_WRF_l"] = pd.cut(df_show["WRF dir"], bins=interval_d,retbins=False,
 df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval_b,retbins=False,
                         labels=labels_b).map({a:b for a,b in zip(interval_b,labels_b)})
 
-
 df_show['Hora UTC'] = pd.to_datetime(df_show['Hora UTC'])
 st.write(df_show)
 
 df_rw = pd.concat([df_show.set_index("Hora UTC"),df_udr.set_index("Hora UTC")],axis=1).dropna()
+df_rw = df_rw.reset_index(inplace=True).rename(columns = {'index':'Hora UTC'})
 st.write(df_rw)
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
 #show results Beaufort intensity
 fig, ax = plt.subplots(figsize=(10,6))
-plt.plot(df_show["Hora UTC"], df_show['ML spdb'], marker="^", color="b",markersize=8, 
+plt.plot(df_rw["Hora UTC"], df_rw['ML spdb'], marker="^", color="b",markersize=8, 
          markerfacecolor='w', linestyle='')
-plt.plot(df_show["Hora UTC"], df_show['spd_WRF_l'], color="r",marker="v", markersize=8,
+plt.plot(df_rw["Hora UTC"], df_rw['"spd_o_l"'], marker="*", color="g",markersize=8, 
+         markerfacecolor='w', linestyle='')
+plt.plot(df_rw["Hora UTC"], df_rw['spd_WRF_l'], color="r",marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
 plt.legend(('Beaufort ml', 'Beaufort WRF'),)
 plt.grid(True)
