@@ -135,7 +135,7 @@ st.write(df_show)
 
 df_rw = pd.concat([df_show.set_index("Hora UTC"),df_udr.set_index("Hora UTC")],axis=1).dropna()
 df_rw = df_rw.reset_index(inplace=True)
-df_rw = df_rw..rename(columns = {'index':'Hora UTC'})
+df_rw = df_rw.rename(columns = {'index':'Hora UTC'})
 st.write(df_rw)
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
