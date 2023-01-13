@@ -142,7 +142,7 @@ st.write(df_rw)
 
 #accuracy
 acc_ml = round(accuracy_score(df_rw.spd_o_l,df_rw["ML spdb"]),2)
-acc_wrf = round(accuracy_score(df_rw.spd_o_l,df_rw.["spd_WRF_l"]),2)
+acc_wrf = round(accuracy_score(df_rw.spd_o_l,df_rw["spd_WRF_l"]),2)
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
 #show results Beaufort intensity
