@@ -155,7 +155,7 @@ plt.plot(df_rw["Hora UTC"], df_rw['spd_WRF_l'], color="r",marker="v", markersize
          markerfacecolor='w', linestyle='');
 plt.legend(('Beaufort ml', "Beaufort observed",'Beaufort WRF'),)
 plt.grid(True)
-plt.title("Precisión actual modelo meteorológico: {:.0%}. Reference: 37%\nPrecisión actual machine learning: {:.0%}. Reference: 54%").format(acc_wrf,acc_ml)
+plt.title("Precisión actual modelo meteorológico: {:.0%}. Reference: 37%\nPrecisión actual machine learning: {:.0%}. Reference: 54%".format(acc_wrf,acc_ml))
 #plt.title("Modelo meteorológico WRF (precisión 37%) versus machine learning (precisión 54%)")
 st.pyplot(fig)
 
