@@ -79,7 +79,7 @@ for c in json_data["listHorarios"]:
     dir_o.append(c1['listaMedidas'][0]["valor"])
     gust_o.append(c1['listaMedidas'][1]["valor"])
     
-df_udr = pd.DataFrame({"time":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o})  
+df_udr = pd.DataFrame({"Hora UTC":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o})  
 df_udr['time'] = pd.to_datetime(df_udr['time'])
 
 #Wind directions intervals
@@ -133,7 +133,7 @@ df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval_b,retbins=False,
 
 st.write(df_show)
 
-df_rw = pd.concat([df_show.set_index("Hora UTC"),df_udr.set_index("time")],axis=1).reset_index(inplace=True)
+df_rw = pd.concat([df_show.set_index("Hora UTC"),df_udr.set_index("Hora UTC")],axis=1).reset_index(inplace=True)
 st.write(df_rw)
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
