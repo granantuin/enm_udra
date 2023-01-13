@@ -203,6 +203,7 @@ plt.grid(True)
 plt.title("Precisión actual modelo meteorológico: {:.0%}. Referencia: 26%\nPrecisión actual machine learning: {:.0%}. Referencia: 46%".format(acc_wrf,acc_ml))            
 st.pyplot(fig)
 
+st.write("###### **Dirección del viento medio hora anterior intervalos grados pronóstico a 72 horas**")
 fig, ax = plt.subplots(figsize=(10,6))
 plt.plot(df_show["Hora UTC"], df_show['ML dir'], marker="^", color="b",markersize=8, 
          markerfacecolor='w', linestyle='')
@@ -234,13 +235,18 @@ AgGrid(round(df_prob,2))
 mae_ml = round(mean_absolute_error(df_rw["gust_o_l"],df_rw["ML racha"]),2)
 mae_wrf = round(mean_absolute_error(df_rw["gust_o_l"],df_rw["WRF racha"]),2)
 
-
 st.write("###### **Racha máxima hora anterior (nudos)**")
 fig, ax = plt.subplots(figsize=(10,6))
 df_rw.set_index("Hora UTC")[["ML racha","WRF racha","gust_o_l"]].plot(grid=True, ax=ax, color=["b","r","g"], linestyle='--');
 ax.set_title("Error absoluto medio actual con modelo meteorológico: {}. Referencia: 2.1\nError absoluto medio actual con machine learning: {}. Referencia: 1.4".format(mae_wrf,mae_ml))
-#ax.set_title("Modelo meteorologico WRF (MAE=2.1) versus machine learning (MAE =1.4)")
 st.pyplot(fig)
+
+st.write("###### **Racha máxima hora anterior (nudos) pronóstico 72 horas**")
+fig, ax = plt.subplots(figsize=(10,6))
+df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, color=["b","r"], linestyle='--');
+st.pyplot(fig)
+
+
 
 
 #Download excel file
