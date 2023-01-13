@@ -158,6 +158,18 @@ plt.grid(True)
 plt.title("Precisión actual modelo meteorológico: {:.0%}. Referencia: 37%\nPrecisión actual machine learning: {:.0%}. Referencia: 54%".format(acc_wrf,acc_ml))
 st.pyplot(fig)
 
+st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort pronóstico a 72 horas**")
+fig, ax = plt.subplots(figsize=(10,6))
+plt.plot(df_show["Hora UTC"], df_show['ML spdb'], marker="^", color="b",markersize=8, 
+         markerfacecolor='w', linestyle='')
+plt.plot(df_show["Hora UTC"], df_showw['spd_WRF_l'], color="r",marker="v", markersize=8,
+         markerfacecolor='w', linestyle='');
+plt.legend(('Beaufort ml','Beaufort WRF'),)
+plt.grid(True, which = "both", axis = "both")
+st.pyplot(fig)
+
+
+
 #probabilistic results
 prob = (np.concatenate((algo_spdb_d0["pipe"].predict_proba(model_x_var_spdb_d0),
                         algo_spdb_d1["pipe"].predict_proba(model_x_var_spdb_d1),
