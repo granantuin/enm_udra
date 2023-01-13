@@ -109,7 +109,7 @@ df_udr["spd_o_l"] = pd.cut(df_udr["spd_o"], bins=interval_b,retbins=False,
 #Wind gust to knots
 df_udr["gust_o_l"] = round(df_udr.gust_o*1.94384,0)
 
-st.write(df_udr)
+#st.write(df_udr)
 
 
 #compare results
@@ -134,11 +134,11 @@ df_show["spd_WRF_l"] = pd.cut(df_show["WRF spd"], bins=interval_b,retbins=False,
                         labels=labels_b).map({a:b for a,b in zip(interval_b,labels_b)})
 
 df_show['Hora UTC'] = pd.to_datetime(df_show['Hora UTC'])
-st.write(df_show)
+#st.write(df_show)
 
 df_rw = pd.concat([df_show.set_index("Hora UTC"),df_udr.set_index("Hora UTC")],axis=1).dropna()
 df_rw["Hora UTC"] = df_rw.index
-st.write(df_rw)
+#st.write(df_rw)
 
 #accuracy
 acc_ml = round(accuracy_score(df_rw.spd_o_l,df_rw["ML spdb"]),2)
@@ -202,6 +202,16 @@ plt.legend(('dirección ml', "dirección observada", 'dirección WRF'),)
 plt.grid(True)
 plt.title("Precisión actual modelo meteorológico: {:.0%}. Referencia: 26%\nPrecisión actual machine learning: {:.0%}. Referencia: 46%".format(acc_wrf,acc_ml))            
 st.pyplot(fig)
+
+fig, ax = plt.subplots(figsize=(10,6))
+plt.plot(df_show["Hora UTC"], df_show['ML dir'], marker="^", color="b",markersize=8, 
+         markerfacecolor='w', linestyle='')
+plt.plot(df_show["Hora UTC"], df_show['dir_WRF_l'], color="r",marker="v", markersize=8,
+         markerfacecolor='w', linestyle='');
+plt.legend(('Direccion ml','Dirección WRF'),)
+plt.grid(True, which = "both", axis = "both")
+st.pyplot(fig)
+
 
 #probabilistic results
 prob = (np.concatenate((algo_dir_d0["pipe"].predict_proba(model_x_var_dir_d0),
