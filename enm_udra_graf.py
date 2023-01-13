@@ -162,7 +162,7 @@ st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort pro
 fig, ax = plt.subplots(figsize=(10,6))
 plt.plot(df_show["Hora UTC"], df_show['ML spdb'], marker="^", color="b",markersize=8, 
          markerfacecolor='w', linestyle='')
-plt.plot(df_show["Hora UTC"], df_showw['spd_WRF_l'], color="r",marker="v", markersize=8,
+plt.plot(df_show["Hora UTC"], df_show['spd_WRF_l'], color="r",marker="v", markersize=8,
          markerfacecolor='w', linestyle='');
 plt.legend(('Beaufort ml','Beaufort WRF'),)
 plt.grid(True, which = "both", axis = "both")
