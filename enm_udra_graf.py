@@ -25,6 +25,8 @@ algo_g_d2 = pickle.load(open("algorithms/gust_UDR_d2.al","rb"))
 #load raw meteorological model and get model variables
 meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 
+st.write(meteo_model)
+
 #Select meteorological model wind features
 w_g0 = (meteo_model[0:72].wind_gust0*1.94384).round(0).to_numpy()
 dir0 = (meteo_model[0:72].dir0).round(0).to_numpy()
