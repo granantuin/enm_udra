@@ -350,6 +350,11 @@ st.bar_chart(df_show_pre, x = "Hora UTC", y = "WRF")
 df_final = pd.concat([df_mar.set_index("time"),df_show_pre.set_index("Hora UTC")],axis=1)
 st.write(df_final)
 
+fig, ax = plt.subplots(figsize=(10,8))
+df_final.dropna().plot(ax=ax, grid=True, kind='bar')
+st.pyplot(fig)
+
+
 
 #download  excel file  
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
