@@ -80,9 +80,9 @@ time, spd_o, dir_o, gust_o = [],[],[],[]
 for c in json_data["listHorarios"]:
   for c1 in c['listaInstantes']:
     time.append(c1['instanteLecturaUTC'])
-    spd_o.append(c1['listaMedidas'][2]["valor"])
+    spd_o.append(c1['listaMedidas'][1]["valor"])
     dir_o.append(c1['listaMedidas'][0]["valor"])
-    gust_o.append(c1['listaMedidas'][1]["valor"])
+    gust_o.append(c1['listaMedidas'][2]["valor"])
     
 df_udr = pd.DataFrame({"Hora UTC":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o})  
 df_udr['Hora UTC'] = pd.to_datetime(df_udr['Hora UTC'])
