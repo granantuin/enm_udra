@@ -73,16 +73,27 @@ spdb_ml_d1 = algo_spdb_d1["pipe"].predict(model_x_var_spdb_d1)
 spdb_ml_d2 = algo_spdb_d2["pipe"].predict(model_x_var_spdb_d2)
 
 #Udra wind
-r = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=10905&idParam=VV_AVG_10m,DV_AVG_10m,VV_RACHA_10m&numHoras=24")
-
-json_data = json.loads(r.content)
-time, spd_o, dir_o, gust_o = [],[],[],[]
+r_dir = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=10905&idParam=DV_AVG_10m&numHoras=36")
+json_data = json.loads(r_dir.content)
+time, dir_o = [],[]
 for c in json_data["listHorarios"]:
   for c1 in c['listaInstantes']:
     time.append(c1['instanteLecturaUTC'])
-    spd_o.append(c1['listaMedidas'][1]["valor"])
     dir_o.append(c1['listaMedidas'][0]["valor"])
-    gust_o.append(c1['listaMedidas'][2]["valor"])
+
+r_spd = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=10905&idParam=VV_AVG_10m&numHoras=36")
+json_data = json.loads(r_spd.content)
+spd_o = []
+for c in json_data["listHorarios"]:
+  for c1 in c['listaInstantes']:
+    spd_o.append(c1['listaMedidas'][0]["valor"])    
+    
+r_gust = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=10905&idParam=VV_RACHA_10m&numHoras=36")
+json_data = json.loads(r_gust.content)
+gust_o = []
+for c in json_data["listHorarios"]:
+  for c1 in c['listaInstantes']:
+    gust_o.append(c1['listaMedidas'][0]["valor"])
     
 df_udr = pd.DataFrame({"Hora UTC":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o})  
 df_udr['Hora UTC'] = pd.to_datetime(df_udr['Hora UTC'])
