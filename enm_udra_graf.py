@@ -355,7 +355,9 @@ fig, ax = plt.subplots(figsize=(10,8))
 df_final[["WRF","prec_o"]].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
-
+fig, ax = plt.subplots(figsize=(10,8))
+df_final[["ML","prec_o"]].plot(ax=ax, grid=True, kind='bar')
+st.pyplot(fig)
 
 #download  excel file  
 st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
