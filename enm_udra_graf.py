@@ -327,20 +327,16 @@ st.bar_chart(df_show_pre, x = "Hora UTC", y = "ML")
 
 
 #Marin Precipitation and wind
-r = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005&idParam=VV_AVG_10m,DV_AVG_10m,VV_RACHA_10m,PP_SUM_1.5m&numHoras=24")
+r = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005&idParam=PP_SUM_1.5m&numHoras=24")
 
 json_data = json.loads(r.content)
-time, spd_o, dir_o, gust_o,prec_o = [],[],[],[],[]
+time,prec_o = [],[]
 for c in json_data["listHorarios"]:
   for c1 in c['listaInstantes']:
     time.append(c1['instanteLecturaUTC'])
     spd_o.append(c1['listaMedidas'][3]["valor"])
-    dir_o.append(c1['listaMedidas'][0]["valor"])
-    gust_o.append(c1['listaMedidas'][2]["valor"])
-    prec_o.append(c1['listaMedidas'][1]["valor"])
-    
-df_mar = pd.DataFrame({"time":time, "spd_o":spd_o,"dir_o":dir_o,"gust_o":gust_o,
-                       "prec_o":prec_o})  
+        
+df_mar = pd.DataFrame({"time":time,"prec_o":prec_o})  
 df_mar['time'] = pd.to_datetime(df_mar['time'])
 
 
