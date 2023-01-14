@@ -28,9 +28,9 @@ meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 st.write(meteo_model)
 
 #Select meteorological model wind features
-w_g0 = (meteo_model[0:72].wind_gust0*1.94384).round(0).to_numpy()
-dir0 = (meteo_model[0:72].dir0).round(0).to_numpy()
-mod0 = (meteo_model[0:72].mod0).round(0).to_numpy()
+w_g0 = meteo_model.wind_gust0*1.94384
+dir0 = meteo_model.dir0
+mod0 = meteo_model.mod0
 
 #select x _var
 model_x_var_g_d0 = meteo_model[:24][algo_g_d0["x_var"]]
@@ -111,7 +111,7 @@ df_udr["spd_o_l"] = pd.cut(df_udr["spd_o"], bins=interval_b,retbins=False,
 #Wind gust to knots
 df_udr["gust_o_l"] = round(df_udr.gust_o*1.94384,0)
 
-#st.write(df_udr)
+st.write(df_udr)
 
 
 #compare results
