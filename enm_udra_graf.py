@@ -319,11 +319,11 @@ df_show_pre = df_show_pre.drop(columns=["no p"])
 df_show_pre['ML'] = round(df_show_pre['ML'],2)
 df_show_pre['Hora UTC'] = pd.to_datetime(df_show_pre['Hora UTC'])
 
-st.write("#### **Probabilidad de precipitación hora anterior con Machine Learning (Heidke Skill Score: 0.53) en ENM**")         
+#st.write("#### **Probabilidad de precipitación hora anterior con Machine Learning (Heidke Skill Score: 0.53) en ENM**")         
 #fig, ax = plt.subplots(figsize=(10,8))
 #df_show_pre.set_index('Hora UTC')["ML"].plot(ax=ax, grid=True, kind='bar')
 #st.pyplot(fig)
-st.bar_chart(df_show_pre, x = "Hora UTC", y = "ML")
+#st.bar_chart(df_show_pre, x = "Hora UTC", y = "ML")
 
 
 #Marin Precipitation and wind
@@ -364,8 +364,7 @@ st.pyplot(fig)
 
 st.write("#### **Probabilidad de precipitación machine learning**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final["ML"] = df_final["ML"].dropna()
-df_final["ML"][0:31].plot(ax=ax, grid=True, kind='bar')
+df_final["ML"].dropna()[0:31].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
 #download  excel file  
