@@ -264,7 +264,7 @@ st.pyplot(fig)
 
 
 #Download excel file
-st.markdown(get_table_download_link(df_show),unsafe_allow_html=True)
+#st.markdown(get_table_download_link(df_show),unsafe_allow_html=True)
 
 st.write("###### **Información complementaria:**")
 #map
@@ -342,19 +342,21 @@ df_mar['time'] = pd.to_datetime(df_mar['time'])
 
 #rain
 
-#st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
-#st.bar_chart(df_show_pre, x = "Hora UTC", y = "WRF")
-
 df_final = pd.concat([df_mar.set_index("time"),df_show_pre.set_index("Hora UTC")],axis=1)
 
 
 df_final["prec_o"] = df_final["prec_o"].fillna(0) 
 df_final[["prec_o","WRF"]].dropna()
-st.write(df_final)
+#st.write(df_final)
 
 st.write("#### **Pronóstico de precipitación del modelo WRF y precipitación observada**")
 fig, ax = plt.subplots(figsize=(10,8))
 df_final[["WRF","prec_o"]].dropna()[0:31].plot(ax=ax, grid=True, kind='bar')
+st.pyplot(fig)
+
+st.write("#### **Probabilidad de precipitación machine learning**")
+fig, ax = plt.subplots(figsize=(10,8))
+df_final["ML"].dropna()[0:31].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
 st.write("#### **Pronóstico de precipitación del modelo WRF**")
@@ -364,11 +366,13 @@ st.pyplot(fig)
 
 st.write("#### **Probabilidad de precipitación machine learning**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final["ML"].dropna()[0:31].plot(ax=ax, grid=True, kind='bar')
+df_final["ML"].dropna()[30:].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
+
+
 #download  excel file  
-st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
+#st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
 
 st.write("###### **Información complementaria:**")
 #map
