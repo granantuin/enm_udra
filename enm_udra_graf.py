@@ -354,7 +354,7 @@ st.write(df_final)
 
 st.write("#### **Pronóstico de precipitación del modelo WRF y precipitación observada**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final[["WRF","prec_o"]].dropna()[0:30].plot(ax=ax, grid=True, kind='bar')
+df_final[["WRF","prec_o"]].dropna()[0:31].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
 st.write("#### **Pronóstico de precipitación del modelo WRF**")
