@@ -362,10 +362,10 @@ fig, ax = plt.subplots(figsize=(10,8))
 df_final["WRF"].dropna()[30:].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
-st.write("#### **Probabilidad de precipitación machine learning y precipitación observada**")
+st.write("#### **Probabilidad de precipitación machine learning**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final["ML"] = df_final["ML"].dropna().map("{:.0f}%".format)
-df_final[0:31].plot(ax=ax, grid=True, kind='bar',y="ML")
+df_final["ML"] = df_final["ML"].dropna()
+df_final["ML"][0:31].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
 #download  excel file  
