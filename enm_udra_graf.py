@@ -348,10 +348,11 @@ st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorol
 st.bar_chart(df_show_pre, x = "Hora UTC", y = "WRF")
 
 df_final = pd.concat([df_mar.set_index("time"),df_show_pre.set_index("Hora UTC")],axis=1)
-st.write(df_final)
 
-df_final = df_final["prec_o"].fillna(0) 
-df_final = df_final.dropna()
+
+df_final["prec_o"] = df_final["prec_o"].fillna(0) 
+df_final[["prec_o","WRF"]].dropna()
+st.write(df_final)
 
 st.write("#### **Precipitación del modelo WRF y precipitación observada")
 fig, ax = plt.subplots(figsize=(10,8))
