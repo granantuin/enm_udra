@@ -25,7 +25,7 @@ algo_g_d2 = pickle.load(open("algorithms/gust_UDR_d2.al","rb"))
 #load raw meteorological model and get model variables
 meteo_model = get_meteogalicia_model_1Km(algo_g_d0["coor"])
 
-st.write(meteo_model)
+#st.write(meteo_model)
 
 #Select meteorological model wind features
 w_g0 = meteo_model.wind_gust0*1.94384
@@ -364,7 +364,8 @@ st.pyplot(fig)
 
 st.write("#### **Probabilidad de precipitación machine learning y precipitación observada**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final["ML"].dropna().map("{:.0f}%".format)[0:31].plot(ax=ax, grid=True, kind='bar')
+df_final["ML"] = df_final["ML"].dropna().map("{:.0f}%".format)
+df_final[0:31].plot(ax=ax, grid=True, kind='bar',y="ML")
 st.pyplot(fig)
 
 #download  excel file  
