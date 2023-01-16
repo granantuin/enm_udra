@@ -354,9 +354,13 @@ df_final["prec_o"] = df_final["prec_o"].fillna(0)
 df_final[["prec_o","WRF"]].dropna()
 st.write(df_final)
 
-st.write("#### **Precipitación del modelo WRF y precipitación observada")
+st.write("#### **Precipitación del modelo WRF y precipitación observada**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final[["WRF","prec_o"]].dropna().plot(ax=ax, grid=True, kind='bar')
+df_final[["WRF","prec_o"]].dropna()[0:24].plot(ax=ax, grid=True, kind='bar')
+st.pyplot(fig)
+
+fig, ax = plt.subplots(figsize=(10,8))
+df_final[["WRF","prec_o"]].dropna()[24:].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
 fig, ax = plt.subplots(figsize=(10,8))
