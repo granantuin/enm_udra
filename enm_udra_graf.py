@@ -341,11 +341,9 @@ df_mar['time'] = pd.to_datetime(df_mar['time'])
 
 
 #rain
-st.write("#### **precipitación litros/m2 (hora anterior)**")
-st.bar_chart(df_mar,x="time", y="prec_o")
 
-st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
-st.bar_chart(df_show_pre, x = "Hora UTC", y = "WRF")
+#st.write("#### **Precipitación prevista en mm hora anterior con modelo meteorológico WRF(Heidke Skill Score: 0.41) en ENM**")         
+#st.bar_chart(df_show_pre, x = "Hora UTC", y = "WRF")
 
 df_final = pd.concat([df_mar.set_index("time"),df_show_pre.set_index("Hora UTC")],axis=1)
 
@@ -354,13 +352,14 @@ df_final["prec_o"] = df_final["prec_o"].fillna(0)
 df_final[["prec_o","WRF"]].dropna()
 st.write(df_final)
 
-st.write("#### **Precipitación del modelo WRF y precipitación observada**")
+st.write("#### **Pronóstico de precipitación del modelo WRF y precipitación observada**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final[["WRF","prec_o"]].dropna()[0:24].plot(ax=ax, grid=True, kind='bar')
+df_final[["WRF","prec_o"]].dropna()[0:30].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
+st.write("#### **Pronóstico de precipitación del modelo WRF**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final[["WRF","prec_o"]].dropna()[24:].plot(ax=ax, grid=True, kind='bar')
+df_final["WRF"].dropna()[30:].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
 fig, ax = plt.subplots(figsize=(10,8))
