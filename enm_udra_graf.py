@@ -356,11 +356,11 @@ st.write(df_final)
 
 st.write("#### **Precipitación del modelo WRF y precipitación observada")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final[["WRF","prec_o"]].plot(ax=ax, grid=True, kind='bar')
+df_final[["WRF","prec_o"]].dropna().plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
 fig, ax = plt.subplots(figsize=(10,8))
-df_final[["ML","prec_o"]].dropna().plot(ax=ax, grid=True, kind='bar')
+df_final[["ML","prec_o"]].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
 #download  excel file  
