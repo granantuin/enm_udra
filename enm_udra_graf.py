@@ -122,7 +122,7 @@ df_udr["spd_o_l"] = pd.cut(df_udr["spd_o"], bins=interval_b,retbins=False,
 #Wind gust to knots
 df_udr["gust_o_l"] = round(df_udr.gust_o*1.94384,0)
 
-st.write(df_udr)
+#st.write(df_udr)
 
 
 #compare results
@@ -252,6 +252,7 @@ st.write("###### **Racha máxima hora anterior (nudos)**")
 fig, ax = plt.subplots(figsize=(10,6))
 df_rw.set_index("Hora UTC")[["ML racha","WRF racha","gust_o_l"]].plot(grid=True, ax=ax, color=["b","r","g"], linestyle='--');
 ax.set_title("Error absoluto medio actual con modelo meteorológico: {}. Referencia: 2.1\nError absoluto medio actual con machine learning: {}. Referencia: 1.4".format(mae_wrf,mae_ml))
+plt.grid(True, which = "both", axis = "both")
 st.pyplot(fig)
 
 st.write("###### **Racha máxima hora anterior (nudos) pronóstico 72 horas**")
@@ -259,7 +260,6 @@ fig, ax = plt.subplots(figsize=(10,6))
 df_show.set_index("Hora UTC")[["ML racha","WRF racha"]].plot(grid=True, ax=ax, color=["b","r"], linestyle='--')
 plt.grid(True, which = "both", axis = "both")
 st.pyplot(fig)
-
 
 
 
