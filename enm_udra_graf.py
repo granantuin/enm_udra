@@ -383,7 +383,7 @@ df_final["ML"].dropna()[30:].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
 st.write("#### **Machine learning versus modelo meteorológico WRF**")
-st.write("Victorias modelo meteorológico:{} \nVictorias del algoritmo machine learning:{}".format(score_wrf,score_ml))
+st.write("Victorias modelo meteorológico: {}\nVictorias del algoritmo machine learning: {}".format(score_wrf,score_ml))
 
 #download  excel file  
 #st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
