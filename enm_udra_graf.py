@@ -17,6 +17,10 @@ from sklearn.metrics import mean_absolute_error
 
 st.set_page_config(page_title="ENM_UDRA",layout="wide")
 
+#score machine learning versus WRF
+score_ml = 0
+score_wrf = 0
+
 #load algorithm file gust
 algo_g_d0 = pickle.load(open("algorithms/gust_UDR_d0.al","rb"))
 algo_g_d1 = pickle.load(open("algorithms/gust_UDR_d1.al","rb"))
@@ -156,6 +160,10 @@ df_rw["Hora UTC"] = df_rw.index
 #accuracy
 acc_ml = round(accuracy_score(df_rw.spd_o_l,df_rw["ML spdb"]),2)
 acc_wrf = round(accuracy_score(df_rw.spd_o_l,df_rw["spd_WRF_l"]),2)
+if acc_ml>acc_wrf:
+  score_ml+=1
+if acc_ml<acc_wrf  
+  score_wrf+=1
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
 #show results Beaufort intensity
@@ -199,9 +207,16 @@ st.write("""Probabilidades intensidad del viento columnas con más del 5%""")
 AgGrid(round(df_prob,2))
 
 st.write("###### **Dirección viento medio hora anterior (grados)**")
+
 #accuracy
 acc_ml = round(accuracy_score(df_rw.dir_o_l,df_rw["ML dir"]),2)
 acc_wrf = round(accuracy_score(df_rw.dir_o_l,df_rw["dir_WRF_l"]),2)
+if acc_ml>acc_wrf:
+  score_ml+=1
+if acc_ml<acc_wrf  
+  score_wrf+=1
+
+
 
 #show results wind direction
 fig, ax = plt.subplots(figsize=(10,6))
@@ -247,6 +262,10 @@ AgGrid(round(df_prob,2))
 #mae
 mae_ml = round(mean_absolute_error(df_rw["gust_o_l"],df_rw["ML racha"]),2)
 mae_wrf = round(mean_absolute_error(df_rw["gust_o_l"],df_rw["WRF racha"]),2)
+if mae_ml < mae_wrf:
+  score_ml+=1
+if mae_ml > mae_wrf:  
+  score_wrf+=1
 
 st.write("###### **Racha máxima hora anterior (nudos)**")
 fig, ax = plt.subplots(figsize=(10,6))
@@ -319,12 +338,6 @@ df_show_pre = df_show_pre.drop(columns=["no p"])
 df_show_pre['ML'] = round(df_show_pre['ML'],2)
 df_show_pre['Hora UTC'] = pd.to_datetime(df_show_pre['Hora UTC'])
 
-#st.write("#### **Probabilidad de precipitación hora anterior con Machine Learning (Heidke Skill Score: 0.53) en ENM**")         
-#fig, ax = plt.subplots(figsize=(10,8))
-#df_show_pre.set_index('Hora UTC')["ML"].plot(ax=ax, grid=True, kind='bar')
-#st.pyplot(fig)
-#st.bar_chart(df_show_pre, x = "Hora UTC", y = "ML")
-
 
 #Marin Precipitation and wind
 r = requests.get("https://servizos.meteogalicia.gal/mgrss/observacion/ultimosHorariosEstacions.action?idEst=14005&idParam=PP_SUM_1.5m&numHoras=24")
@@ -369,7 +382,8 @@ fig, ax = plt.subplots(figsize=(10,8))
 df_final["ML"].dropna()[30:].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
-
+st.write("#### **Machine learning versus modelo meteorológico WRF**")
+print("Victorias modelo meteorológico:{} \nVictorias del algoritmo machine learning:{}".format(score_wrf,score_ml))
 
 #download  excel file  
 #st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
