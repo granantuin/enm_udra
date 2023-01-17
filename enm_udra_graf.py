@@ -382,9 +382,6 @@ fig, ax = plt.subplots(figsize=(10,8))
 df_final["ML"].dropna()[30:].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
-st.write("#### **Machine learning versus modelo meteorológico WRF**")
-st.write("Victorias modelo meteorológico: {}\nVictorias del algoritmo machine learning: {}".format(score_wrf,score_ml))
-
 #download  excel file  
 #st.markdown(get_table_download_link(df_show_pre),unsafe_allow_html=True)
 
@@ -407,3 +404,8 @@ st.download_button(label="Descargar informe de calidad precipitación",
                     data=PDFbyte,
                     file_name="informe_prec.pdf",
                     mime='application/octet-stream')
+
+st.write("#### **Machine learning versus modelo meteorológico WRF**")
+st.write("Victorias modelo meteorológico: {}".format(score_wrf))
+st.write("Victorias del algoritmo machine learning: {}".format(score_ml))
+
