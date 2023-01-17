@@ -162,7 +162,7 @@ acc_ml = round(accuracy_score(df_rw.spd_o_l,df_rw["ML spdb"]),2)
 acc_wrf = round(accuracy_score(df_rw.spd_o_l,df_rw["spd_WRF_l"]),2)
 if acc_ml>acc_wrf:
   score_ml+=1
-if acc_ml<acc_wrf  
+if acc_ml<acc_wrf:  
   score_wrf+=1
 
 st.write("###### **Intensidad del viento medio hora anterior fuerza Beaufort**")
@@ -213,7 +213,7 @@ acc_ml = round(accuracy_score(df_rw.dir_o_l,df_rw["ML dir"]),2)
 acc_wrf = round(accuracy_score(df_rw.dir_o_l,df_rw["dir_WRF_l"]),2)
 if acc_ml>acc_wrf:
   score_ml+=1
-if acc_ml<acc_wrf  
+if acc_ml<acc_wrf:  
   score_wrf+=1
 
 
