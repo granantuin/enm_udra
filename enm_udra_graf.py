@@ -300,7 +300,7 @@ st.write("Estación Udra en tiempo real [enlace](https://www.meteogalicia.gal/ob
 #download quality report
 with open("reports/informe_wind.pdf", "rb") as pdf_file:
     PDFbyte = pdf_file.read()
-st.download_button(label="Descargar informe de calidad viento",
+st.download_button(label="Descargar informe del algoritmo de viento",
                     data=PDFbyte,
                     file_name="informe_wind.pdf",
                     mime='application/octet-stream')
@@ -400,7 +400,7 @@ st.write("Estación Marín en tiempo real [enlace](https://www.meteogalicia.gal/
 #download quality report
 with open("reports/informe_prec.pdf", "rb") as pdf_file:
     PDFbyte = pdf_file.read()
-st.download_button(label="Descargar informe de calidad precipitación",
+st.download_button(label="Descargar informe del algoritmo de precipitación",
                     data=PDFbyte,
                     file_name="informe_prec.pdf",
                     mime='application/octet-stream')
