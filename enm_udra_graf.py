@@ -405,7 +405,7 @@ st.download_button(label="Descargar informe del algoritmo de precipitación",
                     file_name="informe_prec.pdf",
                     mime='application/octet-stream')
 
-st.write("#### **Machine learning versus modelo meteorológico WRF**")
-st.write("Victorias modelo meteorológico: {}".format(score_wrf))
-st.write("Victorias del algoritmo machine learning: {}".format(score_ml))
+st.write("#### **Resultado global**")
+st.write("Mejor modelo meteorológico: {}".format(score_wrf))
+st.write("Mejor machine learning: {}".format(score_ml))
 
