@@ -336,7 +336,7 @@ df_show_pre["Hora UTC"] = meteo_model.index[0:96]
 df_show_pre["WRF"] = np.around(meteo_model[:96].prec0.values,decimals=1)
 df_show_pre = df_show_pre.drop(columns=["no p"])
 df_show_pre['ML'] = round(df_show_pre['ML'],2)
-df_show_pre['Hora UTC'] = pd.to_datetime(df_show_pre['Hora UTC'])
+df_show_pre['Hora UTC'] = pd.to_datetime(df_show_pre['Hora UTC']).map(lambda t: t.strftime('%d-%m %H'))
 
 
 #Marin Precipitation and wind
@@ -350,7 +350,7 @@ for c in json_data["listHorarios"]:
     prec_o.append(c1['listaMedidas'][0]["valor"])
         
 df_mar = pd.DataFrame({"time":time,"prec_o":prec_o})  
-df_mar['time'] = pd.to_datetime(df_mar['time'])
+df_mar['time'] = pd.to_datetime(df_mar['time']).map(lambda t: t.strftime('%d-%m %H'))
 
 
 #rain
