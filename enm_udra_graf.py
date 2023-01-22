@@ -380,6 +380,7 @@ st.pyplot(fig)
 
 st.write("#### **Probabilidad de precipitación machine learning**")
 fig, ax = plt.subplots(figsize=(10,8))
+df_final["ML"] =df_final["ML"].round(1)
 df_final["ML"].dropna()[30:].plot(ax=ax, grid=True, kind='bar')
 st.pyplot(fig)
 
