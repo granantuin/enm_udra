@@ -364,7 +364,7 @@ df_final[["prec_o","WRF"]].dropna()
 
 st.write("#### **Pronóstico de precipitación del modelo WRF y precipitación observada**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final[["WRF","prec_o"]].dropna()[0:31].plot(ax=ax, grid=True, kind='bar')
+df_final[["WRF","prec_o"]].dropna()[0:31].plot(ax=ax,ylim =[0, None], grid=True, kind='bar')
 st.pyplot(fig)
 
 st.write("#### **Probabilidad de precipitación machine learning**")
@@ -375,7 +375,7 @@ st.pyplot(fig)
 
 st.write("#### **Pronóstico de precipitación del modelo WRF**")
 fig, ax = plt.subplots(figsize=(10,8))
-df_final["WRF"].dropna()[30:].plot(ax=ax, grid=True, kind='bar')
+df_final["WRF"].dropna()[30:].plot(ax=ax, ylim =[0, None],grid=True, kind='bar')
 st.pyplot(fig)
 
 st.write("#### **Probabilidad de precipitación machine learning**")
