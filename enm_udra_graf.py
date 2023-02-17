@@ -205,23 +205,23 @@ df_prob.drop(cols_to_drop, axis=1, inplace=True)
 #new
 df_prob.index = meteo_model[:72].index.strftime('%b %d %H:%M Z')
 
-fig, ax = plt.subplots()
+fig1, ax = plt.subplots()
 sns.heatmap(df_prob[:24], annot=True, cmap='coolwarm',
             linewidths=.2, linecolor='black',fmt='.0%')
 plt.title('Probabilidades intensidad del viento columnas con más del 5%')
-st.pyplot(fig)
+st.pyplot(fig1)
 
-fig, ax = plt.subplots()
+fig2, ax = plt.subplots()
 sns.heatmap(df_prob[24:48], annot=True, cmap='coolwarm',
             linewidths=.2, linecolor='black',fmt='.0%')
 plt.title('Probabilidades intensidad del viento columnas con más del 5%')
-st.pyplot(fig)
+st.pyplot(fig2)
 
-fig, ax = plt.subplots()
+fig3, ax = plt.subplots()
 sns.heatmap(df_prob[48:72], annot=True, cmap='coolwarm',
             linewidths=.2, linecolor='black',fmt='.0%')
 plt.title('Probabilidades intensidad del viento columnas con más del 5%')
-st.pyplot(fig)
+st.pyplot(fig3)
 
 
 
