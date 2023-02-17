@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import seaborn as sns
 from help_functions import get_meteogalicia_model_4Km, get_meteogalicia_model_1Km, get_table_download_link
 import pickle
 import streamlit as st
