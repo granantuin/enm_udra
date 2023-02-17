@@ -15,7 +15,6 @@ from sklearn.metrics import mean_absolute_error
 
 
 
-
 st.set_page_config(page_title="ENM_UDRA",layout="wide")
 
 #score machine learning versus WRF
