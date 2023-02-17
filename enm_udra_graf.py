@@ -208,13 +208,13 @@ sns.heatmap(df_prob[:72], annot=True, cmap='coolwarm',
             linewidths=.2, linecolor='black',fmt='.0%')
 plt.title('Probabilidades intensidad del viento columnas con más del 5%')
 st.pyplot()
-"""
-df_prob["time"] = meteo_model[:72].index
 
-st.write("""Probabilidades intensidad del viento columnas con más del 5%""")
-AgGrid(round(df_prob,2))
+#df_prob["time"] = meteo_model[:72].index
 
-"""
+#st.write("""Probabilidades intensidad del viento columnas con más del 5%""")
+#AgGrid(round(df_prob,2))
+
+
 
 st.write("###### **Dirección viento medio hora anterior (grados)**")
 
