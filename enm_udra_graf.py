@@ -201,10 +201,20 @@ df_prob = pd.DataFrame(prob,index = (algo_spdb_d0["pipe"].classes_ )).T
 # Find the columns where all values are less than or equal to 5%
 cols_to_drop = df_prob.columns[df_prob.apply(lambda x: x <= 0.05).all()]
 df_prob.drop(cols_to_drop, axis=1, inplace=True)
+
+#new
+df_prob.index = meteo_model[:72].index.strftime('%b %d %H:%M Z')
+sns.heatmap(df_prob[:72], annot=True, cmap='coolwarm',
+            linewidths=.2, linecolor='black',fmt='.0%')
+plt.title('Probabilidades intensidad del viento columnas con más del 5%')
+st.pyplot()
+"""
 df_prob["time"] = meteo_model[:72].index
 
 st.write("""Probabilidades intensidad del viento columnas con más del 5%""")
 AgGrid(round(df_prob,2))
+
+"""
 
 st.write("###### **Dirección viento medio hora anterior (grados)**")
 
