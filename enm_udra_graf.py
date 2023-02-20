@@ -225,13 +225,6 @@ st.pyplot(fig3)
 
 
 
-#df_prob["time"] = meteo_model[:72].index
-
-#st.write("""Probabilidades intensidad del viento columnas con más del 5%""")
-#AgGrid(round(df_prob,2))
-
-
-
 st.write("###### **Dirección viento medio hora anterior (grados)**")
 
 #accuracy
@@ -242,7 +235,8 @@ if acc_ml>acc_wrf:
 if acc_ml<acc_wrf:  
   score_wrf+=1
 
-
+cat_type = pd.CategoricalDtype(categories=interval_d, ordered=True)
+df_rw['ML dir'] = df_rw['ML dir'].astype(cat_type)
 
 #show results wind direction
 fig, ax = plt.subplots(figsize=(10,6))
