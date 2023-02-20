@@ -248,6 +248,7 @@ plt.plot(df_rw["Hora UTC"], df_rw['dir_WRF_l'], color="r",marker="v", markersize
          markerfacecolor='w', linestyle='');
 plt.legend(('dirección ml', "dirección observada", 'dirección WRF'),)
 plt.grid(True)
+plt.yticks(df_rw['ML dir'].cat.codes, df_rw['ML dir'])
 plt.title("Precisión actual modelo meteorológico: {:.0%}. Referencia: 26%\nPrecisión actual machine learning: {:.0%}. Referencia: 46%".format(acc_wrf,acc_ml))            
 st.pyplot(fig)
 
