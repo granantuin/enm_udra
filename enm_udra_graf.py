@@ -237,7 +237,6 @@ if acc_ml<acc_wrf:
 
 cat_type = pd.CategoricalDtype(categories=interval_d, ordered=True)
 df_rw['ML dir'] = df_rw['ML dir'].astype(cat_type)
-df_rw = df_rw.dropna()
 
 #show results wind direction
 fig, ax = plt.subplots(figsize=(10,6))
@@ -249,7 +248,7 @@ plt.plot(df_rw["Hora UTC"], df_rw['dir_WRF_l'], color="r",marker="v", markersize
          markerfacecolor='w', linestyle='');
 plt.legend(('dirección ml', "dirección observada", 'dirección WRF'),)
 plt.grid(True)
-plt.yticks(df_rw['ML dir'].cat.codes, df_rw['ML dir'])
+plt.yticks(np.arange(0, len(intervals_d), step=1),df_rw['ML dir'].cat.codes)
 plt.title("Precisión actual modelo meteorológico: {:.0%}. Referencia: 26%\nPrecisión actual machine learning: {:.0%}. Referencia: 46%".format(acc_wrf,acc_ml))            
 st.pyplot(fig)
 
