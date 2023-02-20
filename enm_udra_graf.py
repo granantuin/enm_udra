@@ -237,6 +237,7 @@ if acc_ml<acc_wrf:
 
 cat_type = pd.CategoricalDtype(categories=interval_d, ordered=True)
 df_rw['ML dir'] = df_rw['ML dir'].astype(cat_type)
+df_rw = df_rw.dropna()
 
 #show results wind direction
 fig, ax = plt.subplots(figsize=(10,6))
